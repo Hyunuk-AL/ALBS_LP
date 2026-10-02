@@ -47,7 +47,7 @@ body { background: var(--bg); color: var(--text); }
 .asm.is-play .part { animation: assembleIn calc(var(--dur, .9s) * var(--spd)) cubic-bezier(.2, .9, .25, 1.05) calc(var(--d, 0s) * var(--spd)) both; }
 .asm.is-play .dim { animation: dimIn calc(.6s * var(--spd)) ease calc(var(--d, 0s) * var(--spd)) both; }
 .asm.is-play .tag { animation: tagFlash calc(1.6s * var(--spd)) ease calc(var(--d, 0s) * var(--spd)) both; }
-.product-copy.is-play .result-chip { animation: chipFrom calc(.6s * var(--spd)) ease calc(var(--d, 0s) * var(--spd)) both; }
+.product-copy.is-play .result-chip { animation: chipFrom calc(.6s * var(--spd-pick)) ease calc(var(--d, 0s) * var(--spd-pick)) both; }
 @keyframes assembleIn { from { opacity: 0; transform: translate(var(--dx, 0px), var(--dy, 0px)) rotate(var(--r, 0deg)) scale(var(--s, 1)); } to { opacity: 1; transform: none; } }
 @keyframes dimIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes chipFrom { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
