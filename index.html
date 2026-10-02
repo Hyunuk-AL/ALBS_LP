@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arch-LINC BIM Standard｜タイプ生成 — 2027年1月末 正式リリース予定</title>
+  <meta name="description" content="ドア・窓・シャッターの形式や寸法を選ぶだけ。ファミリ編集の専門知識がなくても、標準タイプを生成できるRevit向けBIM標準化パッケージ。2027年1月末 正式リリース予定。">
+  <meta property="og:title" content="Arch-LINC BIM Standard｜タイプ作成を、選択に変える。">
+  <meta property="og:description" content="ドア・窓・シャッターを選ぶだけで標準タイプを生成。2027年1月末 正式リリース予定。リリース前アンケート実施中。">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="assets/js/config.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="logo" aria-label="Arch-LINC BIM Standard トップへ">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">Arch-LINC <b>BIM Standard</b></span>
+    </a>
+    <nav class="header-nav" aria-label="ページ内ナビゲーション">
+      <a href="#problem">課題</a>
+      <a href="#door">ドア</a>
+      <a href="#window">窓</a>
+      <a href="#shutter">シャッター</a>
+      <a href="#release">リリース</a>
+    </nav>
+    <a href="#survey-bottom" class="btn btn-primary btn-sm">アンケートに答える</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="badge-release">2027年1月末 正式リリース予定</span> TYPE GENERATION</p>
+        <h1>タイプ作成を、<br><em>選択</em>に変える。</h1>
+        <p class="lead">ドア・窓・シャッターの形式や寸法を<strong>選ぶだけ</strong>。<br class="pc">ファミリ編集の専門知識がなくても、設計意図に合う標準タイプを生成できます。</p>
+        <p class="lead-sub">「どう作るか」に費やしていた時間を、「何を設計するか」へ。</p>
+        <div class="hero-cta">
+          <a href="#survey-top" class="btn btn-primary">1分アンケートに答える</a>
+          <a href="#door" class="btn btn-ghost">動きで見る ↓</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="mock-panel">
+          <div class="mock-title"><span class="dot"></span>タイプ生成</div>
+          <div class="mock-field"><span class="k">部材</span><span class="v" data-hero="kind">ドア</span><span class="chev"></span></div>
+          <div class="mock-field"><span class="k">形式</span><span class="v" data-hero="form">片開き戸</span><span class="chev"></span></div>
+          <div class="mock-field"><span class="k">寸法</span><span class="v" data-hero="size">W900 H2100</span><span class="chev"></span></div>
+          <div class="mock-btn">生成する</div>
+        </div>
+        <div class="mock-arrow"></div>
+        <div class="mock-result">
+          <svg class="hero-icon is-show" data-hero-icon="door" viewBox="0 0 120 160"><path d="M20 10H100V150H92V18H28V150H20Z" fill="currentColor" opacity=".5"/><rect x="29" y="19" width="62" height="130" fill="#fff" stroke="currentColor" stroke-width="2"/><rect x="40" y="30" width="40" height="40" fill="var(--glass)"/><g stroke="currentColor" stroke-width="2"><line x1="40" y1="110" x2="80" y2="110"/><line x1="40" y1="118" x2="80" y2="118"/><line x1="40" y1="126" x2="80" y2="126"/><line x1="40" y1="134" x2="80" y2="134"/></g><rect x="78" y="86" width="9" height="4" rx="2" fill="currentColor"/></svg>
+          <svg class="hero-icon" data-hero-icon="window" viewBox="0 0 160 120"><path fill-rule="evenodd" d="M10 15H150V105H10Z M18 23V97H142V23Z" fill="currentColor" opacity=".5"/><rect x="76" y="23" width="8" height="74" fill="currentColor" opacity=".5"/><rect x="24" y="29" width="46" height="62" fill="var(--glass)" stroke="currentColor" stroke-width="3"/><rect x="90" y="29" width="46" height="62" fill="var(--glass)" stroke="currentColor" stroke-width="3"/></svg>
+          <svg class="hero-icon" data-hero-icon="shutter" viewBox="0 0 160 140"><rect x="14" y="10" width="132" height="22" rx="3" fill="currentColor"/><rect x="20" y="32" width="8" height="98" fill="currentColor" opacity=".6"/><rect x="132" y="32" width="8" height="98" fill="currentColor" opacity=".6"/><g fill="#B9C0C7" stroke="currentColor" stroke-width="1"><rect x="28" y="32" width="104" height="12"/><rect x="28" y="44" width="104" height="12"/><rect x="28" y="56" width="104" height="12"/><rect x="28" y="68" width="104" height="12"/><rect x="28" y="80" width="104" height="12"/><rect x="28" y="92" width="104" height="12"/><rect x="28" y="104" width="104" height="12"/></g><rect x="28" y="116" width="104" height="7" fill="currentColor"/></svg>
+          <div class="mock-type" data-hero="type">WD_01（900×2100_01）</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SURVEY (TOP) ============ -->
+  <section class="survey-section" id="survey-top">
+    <div class="container narrow">
+      <div class="survey-head">
+        <p class="section-label">SURVEY｜リリース前アンケート</p>
+        <h2>あなたの「Revitで困っていること」を教えてください</h2>
+        <p>約1分で終わります。いただいた声は、正式リリースまでの機能づくりに反映します。<br>メールアドレスをご記入いただいた方には、リリース情報を<strong>いち早く</strong>お届けします。</p>
+      </div>
+      <div class="survey-mount" data-position="top"></div>
+      <noscript><p class="noscript">アンケートの表示にはJavaScriptが必要です。お手数ですが <a href="mailto:support@arch-log.com">support@arch-log.com</a> までご意見をお寄せください。</p></noscript>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section class="section" id="problem">
+    <div class="container">
+      <p class="section-label">01｜課題</p>
+      <h2 class="section-title">そのタイプ作成、まだ手作業ですか。</h2>
+      <p class="section-lead">タイプを一つ用意するために、部材を探し、仕様を読み解き、ファミリを編集し、動作を確認し、名前を整える。<br class="pc">小さく見える作業の積み重ねが、設計の時間を圧迫しています。</p>
+
+      <div class="compare">
+        <div class="compare-card before">
+          <h3>これまでのタイプ作成</h3>
+          <ol>
+            <li>必要な仕様を整理</li>
+            <li>使えそうな既存ファミリを探す</li>
+            <li>社内で作るか・外注か・流用かを判断</li>
+            <li>参照面・拘束・数式を編集</li>
+            <li>表示・集計・寸法変更を確認</li>
+            <li>名前を付けてプロジェクトへ登録</li>
+            <li>変更のたびに、再編集・再確認</li>
+          </ol>
+        </div>
+        <div class="compare-arrow" aria-hidden="true"></div>
+        <div class="compare-card after">
+          <h3>Arch-LINC BIM Standard</h3>
+          <ol>
+            <li>部材を選ぶ</li>
+            <li>必要な仕様を選ぶ</li>
+            <li>プレビューで確認</li>
+            <li>タイプを生成・反映</li>
+          </ol>
+          <p class="compare-note">専門的な制作工程を、<br>迷わない選択操作へ。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOLUTION ============ -->
+  <section class="section section-tint" id="solution">
+    <div class="container">
+      <p class="section-label">02｜解決方法</p>
+      <h2 class="section-title">形状を「作る」から、仕様を「選ぶ」へ。</h2>
+      <p class="section-lead">必要なのは、ファミリ編集の専門知識ではありません。<br class="pc">形式・枠・沓摺・パネル・寸法など、<strong>建具の用語と必要な仕様</strong>が分かれば、選択だけでタイプを生成できます。</p>
+
+      <ul class="change-list">
+        <li><span class="from">担当者ごとに作り方が違う</span><span class="to">同じ手順で標準タイプを生成</span></li>
+        <li><span class="from">タイプ名と実際の仕様がずれる</span><span class="to">選んだ仕様から名前とパラメータを自動反映</span></li>
+        <li><span class="from">似たタイプが案件ごとに増える</span><span class="to">同じ条件の重複作成を抑制</span></li>
+        <li><span class="from">2D・3D・集計情報がバラバラ</span><span class="to">形状・表示・属性へ一貫して反映</span></li>
+        <li><span class="from">設計変更のたびに作り直す</span><span class="to">選択を切り替えて更新</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ DOOR ============ -->
+  <section class="section product" id="door">
+    <div class="container product-grid">
+      <div class="product-copy">
+        <p class="section-label">03｜実例 ① ドア</p>
+        <h2 class="section-title">ドアファミリ、<br>1つずつ作っていませんか？</h2>
+        <p>枠も、沓摺も、開き勝手も。必要な仕様が増えるほど、タイプ作成と変更の手間も増えていきます。<br>タイプ生成なら、<strong>建具用語を選ぶだけ</strong>で標準タイプへ。</p>
+        <ol class="spec-list" data-anim-target="door">
+          <li style="--d:.2s"><span class="k">形式</span><span class="v">片開き戸</span></li>
+          <li style="--d:.8s"><span class="k">枠</span><span class="v">片ヒバタ１</span></li>
+          <li style="--d:1.4s"><span class="k">沓摺</span><span class="v">Aタイプ</span></li>
+          <li style="--d:2.0s"><span class="k">パネル</span><span class="v">窓＋ガラリ</span></li>
+          <li style="--d:2.9s"><span class="k">寸法</span><span class="v">W900 H2100</span></li>
+        </ol>
+        <p class="result-chip" style="--d:3.6s"><span>生成タイプ名</span>WD_01（900×2100_01）</p>
+      </div>
+      <div class="stage">
+        <svg class="asm" id="anim-door" viewBox="0 0 320 420" role="img" aria-label="枠・沓摺・扉・窓・ガラリ・ハンドルが組み立てられてドアになるアニメーション">
+          <line class="static floor" x1="20" y1="382" x2="300" y2="382"/>
+          <!-- 枠 -->
+          <path class="part p-frame" style="--dy:-90px;--d:.8s" d="M70 30H250V380H236V44H84V380H70Z"/>
+          <!-- 沓摺 -->
+          <rect class="part p-sill" style="--dy:70px;--d:1.4s" x="68" y="372" width="184" height="10" rx="1"/>
+          <!-- 扉 -->
+          <rect class="part p-leaf" style="--dx:-170px;--r:-8deg;--d:.2s" x="86" y="46" width="148" height="324"/>
+          <!-- 窓 -->
+          <g class="part" style="--s:.2;--d:2.0s">
+            <rect class="p-glass" x="110" y="72" width="100" height="112" rx="2"/>
+            <line class="p-glint" x1="124" y1="170" x2="170" y2="86"/>
+            <line class="p-glint" x1="146" y1="174" x2="190" y2="94"/>
+          </g>
+          <!-- ガラリ -->
+          <g class="part" style="--dx:170px;--d:2.3s">
+            <rect class="p-louver-box" x="110" y="270" width="100" height="72"/>
+            <g class="p-louver">
+              <line x1="114" y1="280" x2="206" y2="280"/><line x1="114" y1="289" x2="206" y2="289"/>
+              <line x1="114" y1="298" x2="206" y2="298"/><line x1="114" y1="307" x2="206" y2="307"/>
+              <line x1="114" y1="316" x2="206" y2="316"/><line x1="114" y1="325" x2="206" y2="325"/>
+              <line x1="114" y1="334" x2="206" y2="334"/>
+            </g>
+          </g>
+          <!-- ハンドル -->
+          <g class="part" style="--dy:-60px;--d:2.6s">
+            <circle class="p-handle" cx="218" cy="216" r="5"/>
+            <rect class="p-handle" x="200" y="213" width="22" height="6" rx="3"/>
+          </g>
+          <!-- 寸法 -->
+          <g class="dim" style="--d:2.9s">
+            <line x1="70" y1="16" x2="250" y2="16"/><line x1="70" y1="10" x2="70" y2="22"/><line x1="250" y1="10" x2="250" y2="22"/>
+            <text x="160" y="11" text-anchor="middle">W900</text>
+            <line x1="276" y1="30" x2="276" y2="382"/><line x1="270" y1="30" x2="282" y2="30"/><line x1="270" y1="382" x2="282" y2="382"/>
+            <text x="290" y="210" transform="rotate(90 290 210)" text-anchor="middle">H2100</text>
+          </g>
+          <!-- ラベル -->
+          <g class="tag" style="--d:.2s"><text x="16" y="200">扉</text></g>
+          <g class="tag" style="--d:.8s"><text x="16" y="48">枠</text></g>
+          <g class="tag" style="--d:1.4s"><text x="16" y="400">沓摺</text></g>
+          <g class="tag" style="--d:2.0s"><text x="16" y="130">窓</text></g>
+          <g class="tag" style="--d:2.3s"><text x="16" y="312">ガラリ</text></g>
+        </svg>
+        <button class="replay" type="button" data-replay="door">もう一度再生</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WINDOW ============ -->
+  <section class="section product section-tint reverse" id="window">
+    <div class="container product-grid">
+      <div class="product-copy">
+        <p class="section-label">03｜実例 ② 窓</p>
+        <h2 class="section-title">窓ファミリ、<br>仕様ごとに作り分けていませんか？</h2>
+        <p>形式も、枠も、ガラスも。条件が増えるほど、作り分けと変更の手間も増えていきます。<br>窓の仕様を選ぶだけで、<strong>ジェネリックファミリ準拠</strong>の標準タイプへ。</p>
+        <ol class="spec-list" data-anim-target="window">
+          <li style="--d:.2s"><span class="k">枠タイプ</span><span class="v">RC</span></li>
+          <li style="--d:.8s"><span class="k">連窓数</span><span class="v">2</span></li>
+          <li style="--d:1.3s"><span class="k">段数</span><span class="v">1</span></li>
+          <li style="--d:2.0s"><span class="k">ガラス</span><span class="v">複層ガラス</span></li>
+          <li style="--d:2.7s"><span class="k">幅・高さ</span><span class="v">W1800 H1200</span></li>
+        </ol>
+        <p class="result-chip" style="--d:3.4s"><span>生成タイプ名</span>AW-1</p>
+      </div>
+      <div class="stage">
+        <svg class="asm" id="anim-window" viewBox="0 0 420 320" role="img" aria-label="外枠・方立・障子・ガラス・水切りが組み立てられて窓になるアニメーション">
+          <!-- 外枠 -->
+          <path class="part p-frame" style="--dy:-90px;--d:.2s" fill-rule="evenodd" d="M40 40H380V270H40Z M52 52V258H368V52Z"/>
+          <!-- 方立 -->
+          <rect class="part p-frame" style="--dy:120px;--d:.8s" x="204" y="52" width="12" height="206"/>
+          <!-- 障子 左右 -->
+          <rect class="part p-sash" style="--dx:-180px;--d:1.3s" x="58" y="58" width="140" height="194"/>
+          <rect class="part p-sash" style="--dx:180px;--d:1.45s" x="222" y="58" width="140" height="194"/>
+          <!-- ガラス -->
+          <g class="part" style="--s:.3;--d:2.0s">
+            <rect class="p-glass" x="64" y="64" width="128" height="182"/>
+            <rect class="p-glass" x="228" y="64" width="128" height="182"/>
+            <line class="p-glint" x1="80" y1="220" x2="150" y2="90"/>
+            <line class="p-glint" x1="244" y1="220" x2="314" y2="90"/>
+          </g>
+          <!-- 水切り -->
+          <polygon class="part p-sill" style="--dy:60px;--d:2.4s" points="32,270 388,270 398,284 22,284"/>
+          <!-- 寸法 -->
+          <g class="dim" style="--d:2.7s">
+            <line x1="40" y1="20" x2="380" y2="20"/><line x1="40" y1="14" x2="40" y2="26"/><line x1="380" y1="14" x2="380" y2="26"/>
+            <text x="210" y="14" text-anchor="middle">W1800</text>
+            <line x1="404" y1="40" x2="404" y2="270"/><line x1="398" y1="40" x2="410" y2="40"/><line x1="398" y1="270" x2="410" y2="270"/>
+            <text x="414" y="155" transform="rotate(90 414 155)" text-anchor="middle">H1200</text>
+          </g>
+          <g class="tag" style="--d:.2s"><text x="40" y="306">外枠</text></g>
+          <g class="tag" style="--d:.8s"><text x="196" y="306">方立</text></g>
+          <g class="tag" style="--d:2.4s"><text x="330" y="306">水切り</text></g>
+        </svg>
+        <button class="replay" type="button" data-replay="window">もう一度再生</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SHUTTER ============ -->
+  <section class="section product" id="shutter">
+    <div class="container product-grid">
+      <div class="product-copy">
+        <p class="section-label">03｜実例 ③ シャッター</p>
+        <h2 class="section-title">シャッターファミリ、<br>案件ごとに作り直していませんか？</h2>
+        <p>ケース、スラット、ガイドレール、開口寸法。部材が多いシャッターも、<strong>同じ選択操作</strong>で仕様を整理し、標準タイプとして生成します。</p>
+        <ol class="spec-list" data-anim-target="shutter">
+          <li style="--d:.2s"><span class="k">ガイド</span><span class="v">標準ガイドレール</span></li>
+          <li style="--d:.8s"><span class="k">ケース</span><span class="v">天井付</span></li>
+          <li style="--d:1.4s"><span class="k">形式</span><span class="v">軽量シャッター</span></li>
+          <li style="--d:3.4s"><span class="k">開口寸法</span><span class="v">W3000 H2500</span></li>
+        </ol>
+        <p class="result-chip" style="--d:4.0s"><span>生成タイプ名</span>軽量_W3000×H2500</p>
+      </div>
+      <div class="stage">
+        <svg class="asm" id="anim-shutter" viewBox="0 0 420 380" role="img" aria-label="ガイドレール・ケース・スラット・座板が組み立てられてシャッターになるアニメーション">
+          <line class="static floor" x1="20" y1="348" x2="400" y2="348"/>
+          <!-- ガイドレール -->
+          <rect class="part p-rail" style="--dy:120px;--d:.2s" x="60" y="70" width="14" height="278"/>
+          <rect class="part p-rail" style="--dy:120px;--d:.3s" x="346" y="70" width="14" height="278"/>
+          <!-- スラット＋座板：ケースから降りてくる -->
+          <defs><clipPath id="shutterClip"><rect x="60" y="60" width="300" height="290"/></clipPath></defs>
+          <g clip-path="url(#shutterClip)">
+            <g class="part" style="--dy:-280px;--d:1.4s;--dur:1.8s">
+              <rect class="p-slat" x="74" y="76" width="272" height="20"/><rect class="p-slat" x="74" y="96" width="272" height="20"/>
+              <rect class="p-slat" x="74" y="116" width="272" height="20"/><rect class="p-slat" x="74" y="136" width="272" height="20"/>
+              <rect class="p-slat" x="74" y="156" width="272" height="20"/><rect class="p-slat" x="74" y="176" width="272" height="20"/>
+              <rect class="p-slat" x="74" y="196" width="272" height="20"/><rect class="p-slat" x="74" y="216" width="272" height="20"/>
+              <rect class="p-slat" x="74" y="236" width="272" height="20"/><rect class="p-slat" x="74" y="256" width="272" height="20"/>
+              <rect class="p-slat" x="74" y="276" width="272" height="20"/><rect class="p-slat" x="74" y="296" width="272" height="20"/>
+              <rect class="p-slat" x="74" y="316" width="272" height="20"/>
+              <rect class="p-bottom" x="72" y="334" width="276" height="12" rx="1"/>
+            </g>
+          </g>
+          <!-- ケース -->
+          <g class="part" style="--dy:-90px;--d:.8s">
+            <rect class="p-case" x="46" y="26" width="328" height="50" rx="4"/>
+            <line class="p-case-line" x1="56" y1="62" x2="364" y2="62"/>
+          </g>
+          <g class="dim" style="--d:3.4s">
+            <line x1="74" y1="364" x2="346" y2="364"/><line x1="74" y1="358" x2="74" y2="370"/><line x1="346" y1="358" x2="346" y2="370"/>
+            <text x="210" y="378" text-anchor="middle">W3000</text>
+            <line x1="392" y1="76" x2="392" y2="348"/><line x1="386" y1="76" x2="398" y2="76"/><line x1="386" y1="348" x2="398" y2="348"/>
+            <text x="406" y="212" transform="rotate(90 406 212)" text-anchor="middle">H2500</text>
+          </g>
+          <g class="tag" style="--d:.2s"><text x="6" y="200">ガイド</text></g>
+          <g class="tag" style="--d:.8s"><text x="6" y="20">ケース</text></g>
+          <g class="tag" style="--d:1.4s"><text x="6" y="120">スラット</text></g>
+        </svg>
+        <button class="replay" type="button" data-replay="shutter">もう一度再生</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STEPS ============ -->
+  <section class="section section-dark" id="steps">
+    <div class="container">
+      <p class="section-label">04｜使い方</p>
+      <h2 class="section-title">選択、確認、生成。たった3ステップ。</h2>
+      <div class="steps">
+        <div class="step"><span class="step-no">01</span><h3>部材と仕様を選ぶ</h3><p>いつもの建具用語で、必要な条件を選択します。</p></div>
+        <div class="step"><span class="step-no">02</span><h3>プレビューで確認</h3><p>形状・寸法・納まりを、生成する前に確かめられます。</p></div>
+        <div class="step"><span class="step-no">03</span><h3>タイプを生成・反映</h3><p>標準の名前と必要なパラメータを持ったタイプがプロジェクトへ。</p></div>
+      </div>
+      <div class="note-change">
+        <h3>設計変更にも、そのまま追従</h3>
+        <p>寸法・枠・扉・ガラス・開き方が変わっても、一から作り直す必要はありません。選んだ仕様を変更して、タイプを再生成・更新します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VALUE ============ -->
+  <section class="section" id="value">
+    <div class="container">
+      <p class="section-label">05｜チームで使える標準</p>
+      <h2 class="section-title">速さと品質を、同時に。</h2>
+      <div class="cards3">
+        <article class="card"><h3>設計担当</h3><p class="card-sub">検討のスピードを保つ</p><p>必要な建具タイプを早い段階で用意。ファミリ制作ではなく、プラン検討と設計判断に時間を使えます。</p></article>
+        <article class="card"><h3>BIM推進担当</h3><p class="card-sub">標準を現場に広げる</p><p>同じ生成フローを共有し、専門担当者への依頼集中を抑えながら、運用ルールを定着させます。</p></article>
+        <article class="card"><h3>管理者</h3><p class="card-sub">品質のばらつきを抑える</p><p>担当者ごとの設定差、独自の命名、似たタイプの増殖を減らし、案件をまたいで品質を管理できます。</p></article>
+      </div>
+
+      <div class="package">
+        <h3>タイプ生成は、Arch-LINC BIM Standard の一部です</h3>
+        <p>Revit導入前後に必要な「標準環境」をまとめて提供する、BIM標準化パッケージです。</p>
+        <ul class="package-list">
+          <li><b>Revitファミリ</b><span>実務ですぐ使える標準ファミリ（約700点を予定）</span></li>
+          <li><b>Revitテンプレート</b><span>ビュー・図面表現・集計表・シート構成</span></li>
+          <li><b>便利ツール（アドイン）</b><span>タイプ生成、壁タイプ生成、ファミリダウンロードなど</span></li>
+          <li><b>オンデマンド動画</b><span>導入・操作・社内ルールをいつでも学べる</span></li>
+          <li><b>マニュアル・導入ガイド</b><span>初期設定から運用ルールまで整理</span></li>
+          <li><b>導入支援</b><span>社内テンプレート調整や命名ルール整理をサポート</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RELEASE ============ -->
+  <section class="section release" id="release">
+    <div class="container narrow center">
+      <p class="section-label">RELEASE</p>
+      <p class="release-lead">正式リリース</p>
+      <p class="release-date"><span>2027年</span>1月末<small>予定</small></p>
+      <p class="release-sub">ドア・窓・シャッターのタイプ生成で、標準づくりをもっと早く。<br>少人数でも始めやすいプランをご用意する予定です。</p>
+      <a href="#survey-bottom" class="btn btn-primary">アンケートに答えて、リリース情報を受け取る</a>
+    </div>
+  </section>
+
+  <!-- ============ SURVEY (BOTTOM) ============ -->
+  <section class="survey-section" id="survey-bottom">
+    <div class="container narrow">
+      <div class="survey-head">
+        <p class="section-label">SURVEY｜リリース前アンケート</p>
+        <h2>最後に、あなたの声を聞かせてください</h2>
+        <p>「こんな機能があったら助かる」を、正式版の開発に活かします。約1分で終わります。</p>
+      </div>
+      <div class="survey-mount" data-position="bottom"></div>
+      <noscript><p class="noscript">アンケートの表示にはJavaScriptが必要です。お手数ですが <a href="mailto:support@arch-log.com">support@arch-log.com</a> までご意見をお寄せください。</p></noscript>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="logo-text">Arch-LINC <b>BIM Standard</b></p>
+      <p class="footer-note">※ 掲載内容は開発中のものです。仕様・名称・提供時期は変更になる場合があります。<br>※ Revit は Autodesk, Inc. の登録商標です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:support@arch-log.com">お問い合わせ：support@arch-log.com</a>
+      <p>&copy; Arch-LOG</p>
+    </div>
+  </div>
+</footer>
+
+<a href="#survey-bottom" class="float-cta" aria-label="アンケートに答える">アンケートに答える</a>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
