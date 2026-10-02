@@ -125,19 +125,29 @@
     });
   }
 
+  function resetAnim(name) {
+    var svg = document.getElementById("anim-" + name);
+    var list = document.querySelector('[data-anim-target="' + name + '"]');
+    [svg, list, list && list.closest(".product-copy")].forEach(function (el) { if (el) el.classList.remove("is-play"); });
+  }
+
   ["door", "window", "shutter"].forEach(function (name) {
     var svg = document.getElementById("anim-" + name);
     if (!svg) return;
     if (!("IntersectionObserver" in window)) { playAnim(name); return; }
+    // 画面に入るたびに再生し、画面外に出たら初期状態へ戻す
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          playAnim(name);
-          track("view_animation", { item: name });
-          io.disconnect();
+        if (e.isIntersecting && e.intersectionRatio >= 0.35) {
+          if (!svg.classList.contains("is-play")) {
+            playAnim(name);
+            track("view_animation", { item: name });
+          }
+        } else if (!e.isIntersecting && !reduceMotion) {
+          resetAnim(name); // 完全に画面外へ出たときだけ戻す
         }
       });
-    }, { threshold: 0.45 });
+    }, { threshold: [0, 0.35] });
     io.observe(svg);
   });
 
@@ -158,10 +168,11 @@
   }
   if (vRows.length && !reduceMotion) {
     if ("IntersectionObserver" in window) {
-      // 画面に入る少し手前で開始し、表示前の状態から1つずつ並べる
+      // 画面に入る少し手前で開始し、画面外に出たらリセット（入るたびに再生）
       var vo = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) { playRow(e.target); vo.unobserve(e.target); }
+          if (e.isIntersecting) playRow(e.target);
+          else e.target.classList.remove("is-play");
         });
       }, { rootMargin: "0px 0px 10% 0px", threshold: 0 });
       vRows.forEach(function (r) { vo.observe(r); });
