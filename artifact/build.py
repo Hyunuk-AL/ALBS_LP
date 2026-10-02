@@ -1,6 +1,6 @@
 """LP を claude.ai Artifact 用の単一 HTML にまとめる。
 使い方: python3 artifact/build.py <出力パス>"""
-import re, sys, pathlib
+import re, sys, pathlib, base64
 root = pathlib.Path(__file__).resolve().parent.parent
 here = root / "artifact"
 html = (root / "index.html").read_text()
@@ -10,6 +10,9 @@ adapter = (here / "adapter.js").read_text()
 
 body = re.search(r"<body>(.*)</body>", html, re.S).group(1)
 body = body.replace('<script src="assets/js/main.js"></script>', "")
+# 画像は data URI として埋め込む
+body = re.sub(r'src="(assets/img/[^"]+\.jpg)"',
+              lambda m: 'src="data:image/jpeg;base64,' + base64.b64encode((root / m.group(1)).read_bytes()).decode() + '"', body)
 fonts = re.search(r'<link href="https://fonts.googleapis.com[^>]+>', html).group(0)
 
 # Artifact 内では mailto が届かない閲覧者がいるため、宛先はテキストとして見せる

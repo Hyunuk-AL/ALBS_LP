@@ -149,6 +149,30 @@
     });
   });
 
+  /* ---------------- door variants gallery ---------------- */
+  var vRows = document.querySelectorAll(".v-row");
+  function playRow(row) {
+    row.classList.remove("is-play");
+    void row.getBoundingClientRect();
+    row.classList.add("is-play");
+  }
+  if (vRows.length && !reduceMotion) {
+    if ("IntersectionObserver" in window) {
+      // 画面に入る少し手前で開始し、表示前の状態から1つずつ並べる
+      var vo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { playRow(e.target); vo.unobserve(e.target); }
+        });
+      }, { rootMargin: "0px 0px 10% 0px", threshold: 0 });
+      vRows.forEach(function (r) { vo.observe(r); });
+    }
+    var vBtn = document.querySelector("[data-replay-variants]");
+    if (vBtn) vBtn.addEventListener("click", function () {
+      vRows.forEach(playRow);
+      track("replay_animation", { item: "door_variants" });
+    });
+  }
+
   /* ---------------- survey ---------------- */
   var QUESTIONS = [
     {

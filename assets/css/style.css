@@ -415,3 +415,62 @@ p { margin: 0; }
 }
 .float-cta.is-show { transform: none; }
 @media (min-width: 900px) { .float-cta { display: none; } }
+
+/* ---------- Door variants gallery ---------- */
+.variants { margin-top: 72px; }
+.v-intro { display: flex; flex-wrap: wrap; align-items: end; gap: 8px 24px; margin-bottom: 24px; }
+.v-intro h3 { font-size: clamp(20px, 2.6vw, 26px); color: var(--navy); text-wrap: balance; flex: 1 1 100%; }
+.v-intro p { color: var(--muted); flex: 1 1 320px; }
+.replay.replay-inline { position: relative; right: auto; bottom: auto; flex: none; }
+.v-rows { display: grid; gap: 14px; }
+.v-row {
+  display: grid; gap: 14px; align-items: start; background: #fff; border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 18px;
+}
+@media (min-width: 760px) { .v-row { grid-template-columns: 168px minmax(0, 1fr); padding: 22px 24px; gap: 24px; } }
+.v-head { display: grid; gap: 2px; align-content: start; }
+.v-head h4 { font-size: 18px; color: var(--navy); margin: 0; }
+.v-head p { color: var(--brand); font-weight: 700; font-size: 14px; }
+.v-head p b { font: 800 28px/1.1 var(--font-num); margin-right: 2px; font-variant-numeric: tabular-nums; }
+.v-head small { color: var(--muted); font-size: 12px; line-height: 1.6; }
+.v-scroll { min-width: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding-bottom: 4px; }
+.v-tiles { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; }
+@media (min-width: 760px) { .v-tiles { flex-wrap: wrap; } }
+.vt { flex: none; display: grid; gap: 4px; justify-items: center; }
+.vt img { display: block; border: 1px solid var(--line); border-radius: 8px; background: #fff; object-fit: cover; }
+.v-panel .vt img { width: 72px; height: 108px; }
+.v-frame .vt img, .v-subframe .vt img, .v-sill .vt img { width: 88px; height: 88px; }
+.vt span { font-size: 11px; line-height: 1.35; color: var(--muted); text-align: center; max-width: 88px; }
+.v-panel .vt span { max-width: 72px; }
+/* カテゴリごとに、部材が1つずつ並んでいく */
+.v-row.is-play .vt { animation: tileIn .5s cubic-bezier(.2, .9, .25, 1.1) both; animation-delay: calc(var(--i) * 85ms + .15s); }
+.v-row.is-play .v-head { animation: headIn .5s ease both; }
+@keyframes tileIn { from { opacity: 0; transform: translateY(18px) scale(.9); } to { opacity: 1; transform: none; } }
+@keyframes headIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .v-row.is-play .vt, .v-row.is-play .v-head { animation: none; }
+  .replay.replay-inline { display: none; }
+}
+
+/* ---------- Codes & fire rating ---------- */
+.spec-extra { display: grid; gap: 16px; margin-top: 28px; }
+@media (min-width: 900px) { .spec-extra { grid-template-columns: 1fr 1fr; } }
+.se-card { background: var(--navy); color: #E6EAF0; border-radius: var(--radius); padding: 26px 24px; min-width: 0; display: grid; gap: 12px; align-content: start; }
+.se-card h3 { color: #fff; font-size: 19px; text-wrap: balance; }
+.se-card p { color: #B8C0CE; font-size: 15px; }
+.code-groups { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 8px; }
+.code-groups li { display: flex; flex-wrap: wrap; gap: 6px; }
+.code {
+  font: 700 13px/1 var(--font-num); letter-spacing: .04em; color: var(--navy); background: #fff;
+  border-radius: 6px; padding: 7px 9px; min-width: 44px; text-align: center;
+}
+.code-groups li:first-child .code { background: var(--accent); }
+.fire-table-wrap { overflow-x: auto; margin-top: 4px; }
+.fire-table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; color: var(--text); border-radius: 10px; overflow: hidden; }
+.fire-table th { background: var(--bg-tint); color: var(--muted); font-size: 12px; font-weight: 700; text-align: left; padding: 8px 12px; }
+.fire-table td { padding: 10px 12px; border-top: 1px solid var(--line); white-space: nowrap; }
+.fire-table .num { font: 700 14px var(--font-num); color: var(--navy); }
+.fire { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; border: 1.5px solid var(--brand); color: var(--brand); }
+.fire-strong { background: var(--brand); color: #fff; }
+.fire-none { border-color: var(--steel-light); color: var(--muted); }
+.se-card .se-note { font-size: 12px; color: #8C95A6; }
