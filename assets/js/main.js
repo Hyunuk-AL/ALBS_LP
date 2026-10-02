@@ -151,14 +151,6 @@
     io.observe(svg);
   });
 
-  document.querySelectorAll("[data-replay]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var name = btn.getAttribute("data-replay");
-      playAnim(name);
-      track("replay_animation", { item: name });
-    });
-  });
-
   /* ---------------- door variants gallery ---------------- */
   var vRows = document.querySelectorAll(".v-row");
   function playRow(row) {
@@ -177,11 +169,6 @@
       }, { rootMargin: "0px 0px 10% 0px", threshold: 0 });
       vRows.forEach(function (r) { vo.observe(r); });
     }
-    var vBtn = document.querySelector("[data-replay-variants]");
-    if (vBtn) vBtn.addEventListener("click", function () {
-      vRows.forEach(playRow);
-      track("replay_animation", { item: "door_variants" });
-    });
   }
 
   /* ---------------- survey ---------------- */

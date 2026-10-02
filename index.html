@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Arch-LINC BIM Standard｜タイプ生成 — 2027年1月末 正式リリース予定</title>
   <meta name="description" content="ドア・窓・シャッターの形式や寸法を選ぶだけ。ファミリ編集の専門知識がなくても、標準タイプを生成できるRevit向けBIM標準化パッケージ。2027年1月末 正式リリース予定。">
-  <meta property="og:title" content="Arch-LINC BIM Standard｜タイプ作成を、選択に変える。">
+  <meta property="og:title" content="Arch-LINC BIM Standard｜ドア、窓、シャッターファミリ作成を、選択に変える。">
   <meta property="og:description" content="ドア・窓・シャッターを選ぶだけで標準タイプを生成。2027年1月末 正式リリース予定。リリース前アンケート実施中。">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,9 +41,9 @@
     <div class="container hero-grid">
       <div class="hero-copy">
         <p class="eyebrow"><span class="badge-release">2027年1月末 正式リリース予定</span> TYPE GENERATION</p>
-        <h1>タイプ作成を、<br><em>選択</em>に変える。</h1>
+        <h1><span class="nw">ドア、窓、シャッター</span><br><span class="nw">ファミリ作成を、</span><br><span class="nw"><em>選択</em>に変える。</span></h1>
         <p class="lead">ドア・窓・シャッターの形式や寸法を<strong>選ぶだけ</strong>。<br class="pc">ファミリ編集の専門知識がなくても、設計意図に合う標準タイプを生成できます。</p>
-        <p class="lead-sub">「どう作るか」に費やしていた時間を、「何を設計するか」へ。</p>
+        <p class="lead-sub">「どう作るか」に費やしていた時間を、<span class="hl">「何を設計するか」</span>へ。</p>
         <div class="hero-cta">
           <a href="#survey-bottom" class="btn btn-primary">1分アンケートに答える</a>
           <a href="#door" class="btn btn-ghost">動きで見る ↓</a>
@@ -93,9 +93,8 @@
         <div class="compare-card after">
           <h3>Arch-LINC BIM Standard</h3>
           <ol>
-            <li>部材を選ぶ</li>
+            <li>各部材の仕様を選ぶ</li>
             <li>必要な仕様を選ぶ</li>
-            <li>プレビューで確認</li>
             <li>タイプを生成・反映</li>
           </ol>
           <p class="compare-note">専門的な制作工程を、<br>迷わない選択操作へ。</p>
@@ -129,11 +128,11 @@
         <h2 class="section-title">ドアファミリ、<br>1つずつ作っていませんか？</h2>
         <p>枠も、沓摺も、開き勝手も。必要な仕様が増えるほど、タイプ作成と変更の手間も増えていきます。<br>タイプ生成なら、<strong>建具用語を選ぶだけ</strong>で標準タイプへ。</p>
         <ol class="spec-list" data-anim-target="door">
-          <li style="--d:.2s"><span class="k">形式</span><span class="v">片開き戸</span></li>
-          <li style="--d:.8s"><span class="k">枠</span><span class="v">片ヒバタ１</span></li>
-          <li style="--d:1.4s"><span class="k">沓摺</span><span class="v">Aタイプ</span></li>
-          <li style="--d:2.0s"><span class="k">パネル</span><span class="v">窓＋ガラリ</span></li>
-          <li style="--d:2.9s"><span class="k">寸法</span><span class="v">W900 H2100</span></li>
+          <li style="--d:.2s"><span class="k">形式</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">片開き戸</span></span><span class="pick" aria-hidden="true"><span class="on">片開き戸</span><span>両開き戸</span><span>親子開き戸</span></span></li>
+          <li style="--d:.8s"><span class="k">枠</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">片ヒバタ１</span></span><span class="pick" aria-hidden="true"><span>中ヒバタ</span><span class="on">片ヒバタ１</span><span>潰し枠</span></span></li>
+          <li style="--d:1.4s"><span class="k">沓摺</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">Aタイプ</span></span><span class="pick" aria-hidden="true"><span class="on">Aタイプ</span><span>Bタイプ</span><span>Cタイプ</span></span></li>
+          <li style="--d:2.0s"><span class="k">パネル</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">窓＋ガラリ</span></span><span class="pick" aria-hidden="true"><span>窓</span><span class="on">窓＋ガラリ</span><span>ガラリ</span></span></li>
+          <li style="--d:2.9s"><span class="k">寸法</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">W900 H2100</span></span><span class="pick" aria-hidden="true"><span>W800 H2000</span><span class="on">W900 H2100</span><span>W1000 H2100</span></span></li>
         </ol>
         <p class="result-chip" style="--d:3.6s"><span>生成タイプ名</span>WD_01（900×2100_01）</p>
       </div>
@@ -181,7 +180,6 @@
           <g class="tag" style="--d:2.0s"><text x="16" y="130">窓</text></g>
           <g class="tag" style="--d:2.3s"><text x="16" y="312">ガラリ</text></g>
         </svg>
-        <button class="replay" type="button" data-replay="door">もう一度再生</button>
       </div>
     </div>
 
@@ -189,7 +187,6 @@
       <div class="v-intro">
         <h3>パネル・枠・沓摺を選んで、組み合わせるだけ。</h3>
         <p>カテゴリごとに部材を選び、ドアタイプを生成します。</p>
-        <button class="replay replay-inline" type="button" data-replay-variants>もう一度再生</button>
       </div>
       <div class="v-rows" id="variants">
         <div class="v-row v-panel">
@@ -276,11 +273,11 @@
         <h2 class="section-title">窓ファミリ、<br>仕様ごとに作り分けていませんか？</h2>
         <p>形式も、枠も、ガラスも。条件が増えるほど、作り分けと変更の手間も増えていきます。<br>窓の仕様を選ぶだけで、<strong>ジェネリックファミリ準拠</strong>の標準タイプへ。</p>
         <ol class="spec-list" data-anim-target="window">
-          <li style="--d:.2s"><span class="k">枠タイプ</span><span class="v">RC</span></li>
-          <li style="--d:.8s"><span class="k">連窓数</span><span class="v">2</span></li>
-          <li style="--d:1.3s"><span class="k">段数</span><span class="v">1</span></li>
-          <li style="--d:2.0s"><span class="k">ガラス</span><span class="v">複層ガラス</span></li>
-          <li style="--d:2.7s"><span class="k">幅・高さ</span><span class="v">W1800 H1200</span></li>
+          <li style="--d:.2s"><span class="k">枠タイプ</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">RC</span></span><span class="pick" aria-hidden="true"><span class="on">RC</span><span>ALC</span><span>PB</span></span></li>
+          <li style="--d:.8s"><span class="k">連窓数</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">2</span></span><span class="pick" aria-hidden="true"><span>1</span><span class="on">2</span><span>3</span></span></li>
+          <li style="--d:1.3s"><span class="k">段数</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">1</span></span><span class="pick" aria-hidden="true"><span class="on">1</span><span>2</span><span>3</span></span></li>
+          <li style="--d:2.0s"><span class="k">ガラス</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">複層ガラス</span></span><span class="pick" aria-hidden="true"><span>単板ガラス</span><span class="on">複層ガラス</span><span>網入りガラス</span></span></li>
+          <li style="--d:2.7s"><span class="k">幅・高さ</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">W1800 H1200</span></span><span class="pick" aria-hidden="true"><span>W1690 H1370</span><span class="on">W1800 H1200</span><span>W2600 H1200</span></span></li>
         </ol>
         <p class="result-chip" style="--d:3.4s"><span>生成タイプ名</span>AW-1</p>
       </div>
@@ -313,7 +310,6 @@
           <g class="tag" style="--d:.8s"><text x="196" y="306">方立</text></g>
           <g class="tag" style="--d:2.4s"><text x="330" y="306">水切り</text></g>
         </svg>
-        <button class="replay" type="button" data-replay="window">もう一度再生</button>
       </div>
     </div>
   </section>
@@ -326,10 +322,10 @@
         <h2 class="section-title">シャッターファミリ、<br>案件ごとに作り直していませんか？</h2>
         <p>ケース、スラット、ガイドレール、開口寸法。部材が多いシャッターも、<strong>同じ選択操作</strong>で仕様を整理し、標準タイプとして生成します。</p>
         <ol class="spec-list" data-anim-target="shutter">
-          <li style="--d:.2s"><span class="k">ガイド</span><span class="v">標準ガイドレール</span></li>
-          <li style="--d:.8s"><span class="k">ケース</span><span class="v">天井付</span></li>
-          <li style="--d:1.4s"><span class="k">形式</span><span class="v">軽量シャッター</span></li>
-          <li style="--d:3.4s"><span class="k">開口寸法</span><span class="v">W3000 H2500</span></li>
+          <li style="--d:.2s"><span class="k">ガイド</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">標準ガイドレール</span></span><span class="pick" aria-hidden="true"><span class="on">標準ガイドレール</span><span>埋込ガイドレール</span></span></li>
+          <li style="--d:.8s"><span class="k">ケース</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">天井付</span></span><span class="pick" aria-hidden="true"><span class="on">天井付</span><span>壁付</span></span></li>
+          <li style="--d:1.4s"><span class="k">形式</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">軽量シャッター</span></span><span class="pick" aria-hidden="true"><span class="on">軽量シャッター</span><span>重量シャッター</span></span></li>
+          <li style="--d:3.4s"><span class="k">開口寸法</span><span class="v"><span class="v-ph">選択してください</span><span class="v-val">W3000 H2500</span></span><span class="pick" aria-hidden="true"><span>W2500 H2500</span><span class="on">W3000 H2500</span><span>W3600 H3000</span></span></li>
         </ol>
         <p class="result-chip" style="--d:4.0s"><span>生成タイプ名</span>軽量_W3000×H2500</p>
       </div>
@@ -368,7 +364,6 @@
           <g class="tag" style="--d:.8s"><text x="6" y="20">ケース</text></g>
           <g class="tag" style="--d:1.4s"><text x="6" y="120">スラット</text></g>
         </svg>
-        <button class="replay" type="button" data-replay="shutter">もう一度再生</button>
       </div>
     </div>
   </section>

@@ -96,7 +96,8 @@ p { margin: 0; }
   display: inline-block; background: var(--brand); color: #fff; letter-spacing: .04em;
   padding: 4px 12px; border-radius: 999px; font-family: var(--font); font-size: 13px;
 }
-.hero h1 { font-size: clamp(38px, 6.4vw, 66px); font-weight: 900; margin: 20px 0 22px; color: var(--navy); }
+.hero h1 .nw { white-space: nowrap; }
+.hero h1 { font-size: clamp(28px, 4.4vw, 50px); font-weight: 900; margin: 20px 0 22px; color: var(--navy); }
 .hero h1 em { font-style: normal; color: var(--brand); position: relative; }
 .hero h1 em::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: .06em; height: .18em;
@@ -104,6 +105,7 @@ p { margin: 0; }
 }
 .lead { font-size: clamp(16px, 2vw, 19px); color: var(--text); }
 .lead-sub { margin-top: 14px; font-weight: 700; color: var(--navy); }
+.lead-sub .hl { color: var(--brand); }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
 
 .hero-visual {
@@ -209,7 +211,27 @@ p { margin: 0; }
   transform: translateY(-2px) rotate(45deg); flex: none;
 }
 .spec-list .k { font-size: 13px; color: var(--muted); min-width: 5em; }
-.spec-list .v { font-weight: 700; color: var(--navy); margin-left: auto; }
+.spec-list .v { font-weight: 700; color: var(--navy); margin-left: auto; display: grid; justify-items: end; }
+.spec-list .v > span { grid-area: 1 / 1; white-space: nowrap; }
+.spec-list .v-ph { opacity: 0; color: var(--steel-light); font-weight: 500; font-size: 13px; }
+/* プルダウンが開いて選択される演出 */
+.spec-list .pick {
+  position: absolute; z-index: 5; top: calc(100% - 6px); right: 28px; min-width: 150px;
+  display: grid; padding: 4px; background: #fff; border: 1px solid var(--line); border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(23, 32, 51, .18); opacity: 0; pointer-events: none; transform-origin: top right;
+}
+.spec-list .pick span { font-size: 13px; padding: 5px 10px; border-radius: 5px; color: var(--muted); white-space: nowrap; }
+.spec-list .pick span.on { background: var(--brand-soft); color: var(--brand); font-weight: 700; }
+.spec-list.is-play .pick { animation: pickOpen calc(.8s * var(--spd)) ease calc(var(--d, 0s) * var(--spd) - .25s) both; }
+.spec-list.is-play .v-ph { animation: phOut calc(.3s * var(--spd)) ease calc(var(--d, 0s) * var(--spd)) both; }
+.spec-list.is-play .v-val { animation: valIn calc(.3s * var(--spd)) ease calc(var(--d, 0s) * var(--spd)) both; }
+@keyframes pickOpen {
+  0% { opacity: 0; transform: translateY(-6px) scaleY(.85); }
+  20%, 75% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: none; }
+}
+@keyframes phOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes valIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 .result-chip {
   display: inline-flex; align-items: center; gap: 12px; margin-top: 18px; padding: 10px 18px; border-radius: 10px;
   background: var(--navy); color: #fff; font-family: var(--font-num); font-weight: 700;
@@ -459,6 +481,7 @@ p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .v-row.is-play .vt, .v-row.is-play .v-head { animation: none; }
   .replay.replay-inline { display: none; }
+  .spec-list.is-play .pick, .spec-list.is-play .v-ph, .spec-list.is-play .v-val { animation: none; }
 }
 
 /* ---------- Codes & fire rating ---------- */
