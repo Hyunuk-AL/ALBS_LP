@@ -23,8 +23,8 @@
   --shadow: 0 10px 30px rgba(23, 32, 51, .08);
   --font: "Noto Sans JP", system-ui, -apple-system, "Hiragino Sans", "Yu Gothic UI", sans-serif;
   --font-num: "Inter", var(--font);
-  --spd: .5;                  /* モーション速度の係数（小さいほど速い） */
-  --spd-pick: 1;              /* 項目選択（プルダウン）の速度係数：他の半分の速さ */
+  --spd: .35;                 /* モーション速度の係数（小さいほど速い） */
+  --spd-pick: 1;              /* 項目選択（プルダウン）の速度係数 */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
