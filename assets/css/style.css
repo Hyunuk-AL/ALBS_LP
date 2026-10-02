@@ -23,6 +23,7 @@
   --shadow: 0 10px 30px rgba(23, 32, 51, .08);
   --font: "Noto Sans JP", system-ui, -apple-system, "Hiragino Sans", "Yu Gothic UI", sans-serif;
   --font-num: "Inter", var(--font);
+  --spd: .5;                  /* モーション速度の係数（小さいほど速い） */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -143,7 +144,9 @@ p { margin: 0; }
 }
 .section-label::before { content: ""; width: 22px; height: 3px; background: currentColor; border-radius: 2px; }
 .section-dark .section-label { color: var(--accent); }
-.section-title { font-size: clamp(26px, 3.8vw, 38px); font-weight: 900; color: var(--navy); margin-bottom: 18px; }
+.section-label.is-num { font-size: 26px; letter-spacing: .08em; gap: 14px; margin-bottom: 16px; }
+.section-label.is-num::before { width: 36px; height: 4px; }
+.section-title { font-size: clamp(26px, 3.8vw, 38px); font-weight: 900; color: var(--navy); margin-bottom: 18px; text-wrap: balance; }
 .section-lead { color: var(--muted); max-width: 760px; }
 .section-lead strong { color: var(--text); }
 
@@ -258,22 +261,22 @@ p { margin: 0; }
   transform-box: fill-box; transform-origin: center;
 }
 .js .asm .dim, .js .asm .tag { opacity: 0; }
-.asm.is-play .part { animation: assemble var(--dur, .9s) cubic-bezier(.2, .9, .25, 1.05) var(--d, 0s) forwards; }
-.asm.is-play .dim { animation: fadeIn .6s ease var(--d, 0s) forwards; }
-.asm.is-play .tag { animation: tagFlash 1.6s ease var(--d, 0s) forwards; }
+.asm.is-play .part { animation: assemble calc(var(--dur, .9s) * var(--spd)) cubic-bezier(.2, .9, .25, 1.05) calc(var(--d, 0s) * var(--spd)) forwards; }
+.asm.is-play .dim { animation: fadeIn calc(.6s * var(--spd)) ease calc(var(--d, 0s) * var(--spd)) forwards; }
+.asm.is-play .tag { animation: tagFlash calc(1.6s * var(--spd)) ease calc(var(--d, 0s) * var(--spd)) forwards; }
 @keyframes assemble { to { opacity: 1; transform: none; } }
 @keyframes fadeIn { to { opacity: 1; } }
 @keyframes tagFlash { 0% { opacity: 0; } 20% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: .35; } }
 
 /* 仕様リストの同期ハイライト */
-.spec-list.is-play li { animation: specOn .5s ease var(--d, 0s) forwards; }
+.spec-list.is-play li { animation: specOn calc(.5s * var(--spd)) ease calc(var(--d, 0s) * var(--spd)) forwards; }
 @keyframes specOn {
   0% { border-color: var(--line); }
   40% { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(168, 0, 31, .12); }
   100% { border-color: var(--brand); box-shadow: none; }
 }
 .js .product-copy .result-chip { opacity: 0; transform: translateY(8px); }
-.product-copy.is-play .result-chip { animation: chipIn .6s ease var(--d, 0s) forwards; }
+.product-copy.is-play .result-chip { animation: chipIn calc(.6s * var(--spd)) ease calc(var(--d, 0s) * var(--spd)) forwards; }
 @keyframes chipIn { to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
@@ -286,7 +289,7 @@ p { margin: 0; }
 
 /* ---------- Steps ---------- */
 .steps { display: grid; gap: 18px; margin-top: 36px; }
-@media (min-width: 800px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 800px) { .steps { grid-template-columns: repeat(2, 1fr); } }
 .step { background: var(--navy-2); border: 1px solid rgba(255, 255, 255, .08); border-radius: var(--radius); padding: 26px; }
 .step-no {
   display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
@@ -449,8 +452,8 @@ p { margin: 0; }
   border: 1px dashed var(--steel-light); border-radius: 8px; background: #fff;
 }
 /* カテゴリごとに、部材が1つずつ並んでいく */
-.v-row.is-play .vt { animation: tileIn .5s cubic-bezier(.2, .9, .25, 1.1) both; animation-delay: calc(var(--i) * 85ms + .15s); }
-.v-row.is-play .v-head { animation: headIn .5s ease both; }
+.v-row.is-play .vt { animation: tileIn calc(.5s * var(--spd)) cubic-bezier(.2, .9, .25, 1.1) both; animation-delay: calc((var(--i) * 85ms + .15s) * var(--spd)); }
+.v-row.is-play .v-head { animation: headIn calc(.5s * var(--spd)) ease both; }
 @keyframes tileIn { from { opacity: 0; transform: translateY(18px) scale(.9); } to { opacity: 1; transform: none; } }
 @keyframes headIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
