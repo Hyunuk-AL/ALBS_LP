@@ -93,14 +93,13 @@ window.LP_ADAPTER = (function () {
       var pv = visits.reduce(function (a, v) { return a + (Number(v.count) || 0); }, 0);
       var free = responses.map(function (r) { return [r.wish_free, r.wishes_other, r.pain_other].filter(Boolean).join(" ／ "); })
         .filter(Boolean);
-      var emails = responses.filter(function (r) { return r.email; }).length;
 
       out.innerHTML =
         '<div class="r-kpis">' +
         '<div><span class="r-k">訪問者（ユニーク）</span><b>' + uv + '</b><small>延べ ' + pv + ' 回</small></div>' +
         '<div><span class="r-k">回答数</span><b>' + n + '</b><small>回答率 ' + (uv ? Math.round(n / uv * 100) : 0) + '%</small></div>' +
         '<div><span class="r-k">タイプ生成への期待度</span><b>' + avg + '</b><small>5点満点の平均</small></div>' +
-        '<div><span class="r-k">リリース案内の希望</span><b>' + emails + '</b><small>メール記入あり</small></div>' +
+        '<div><span class="r-k">利用意向「すぐに使ってみたい」</span><b>' + responses.filter(function (r) { return r.intent === "すぐに使ってみたい"; }).length + '</b><small>回答者のうち</small></div>' +
         "</div>" +
         '<div class="r-grid">' +
         bars("利用意向", tally(responses, "intent"), n) +
@@ -110,6 +109,12 @@ window.LP_ADAPTER = (function () {
         bars("お仕事", tally(responses, "role"), n) +
         bars("Revitの利用状況", tally(responses, "revit"), n) +
         "</div>" +
+        '<div class="r-block"><h4>回答者一覧（新しい順）</h4>' +
+        (n ? '<div class="r-table-wrap"><table class="r-table"><thead><tr><th>送信日時</th><th>会社名</th><th>お名前</th><th>メールアドレス</th><th>期待度</th></tr></thead><tbody>' +
+          responses.slice().reverse().map(function (r) {
+            var t = r.submitted_at ? new Date(r.submitted_at).toLocaleString("ja-JP", { dateStyle: "short", timeStyle: "short" }) : "";
+            return "<tr><td>" + esc(t) + "</td><td>" + esc(r.company) + "</td><td>" + esc(r.name) + "</td><td class=\"sel\">" + esc(r.email) + "</td><td>" + esc(r.expectation) + "</td></tr>";
+          }).join("") + "</tbody></table></div>" : '<p class="r-empty">まだ回答がありません</p>') + "</div>" +
         '<div class="r-block"><h4>自由記述（新しい順）</h4>' +
         (free.length ? '<ul class="r-free">' + free.slice().reverse().map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>"
           : '<p class="r-empty">まだ記入がありません</p>') + "</div>";

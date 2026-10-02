@@ -194,13 +194,13 @@
       options: ["すぐに使ってみたい", "無料で試せるなら使いたい", "内容を見てから考えたい", "今のところ必要ない"],
     },
     {
-      name: "targets", type: "checkbox", cols: 2,
+      name: "targets", type: "checkbox", required: true, cols: 2,
       label: "まず使ってみたい建具は？",
       help: "複数選んでいただけます。",
       options: ["ドア", "窓", "シャッター", "その他（間仕切り・点検口など）"],
     },
     {
-      name: "pain", type: "checkbox", cols: 2,
+      name: "pain", type: "checkbox", required: true, cols: 2,
       label: "Revit作業で、特に時間がかかっていることは？",
       help: "複数選んでいただけます。",
       options: [
@@ -214,7 +214,7 @@
       other: true,
     },
     {
-      name: "wishes", type: "checkbox", cols: 2,
+      name: "wishes", type: "checkbox", required: true, cols: 2,
       label: "Revitに後から追加できる「便利ツール」があるとしたら、ほしいものは？",
       help: "Revitに組み込んで使う「お助け機能」のイメージです。複数選んでいただけます。",
       options: [
@@ -303,25 +303,29 @@
           fs.appendChild(oi);
         }
       }
-      fs.appendChild(el("p", { class: "q-error", role: "alert" }, "選択してください"));
+      fs.appendChild(el("p", { class: "q-error", role: "alert" }, q.type === "checkbox" ? "1つ以上選択してください" : "選択してください"));
       form.appendChild(fs);
     });
 
-    // 連絡先（任意）
-    var contact = el("div", { class: "q" });
+    // 連絡先（必須）
+    var contact = el("div", { class: "q q-contact" });
     contact.appendChild(el("p", { class: "q-label", style: "font-weight:700;color:var(--navy);margin-bottom:6px" },
-      '<span class="q-no">' + (QUESTIONS.length + 1) + "</span>リリース情報の受け取り" + '<span class="opt">任意</span>'));
-    contact.appendChild(el("p", { class: "q-help", style: "margin:0 0 12px" }, "ご記入いただいた方へ、リリース情報と先行体験のご案内をお送りします。"));
+      '<span class="q-no">' + (QUESTIONS.length + 1) + "</span>ご連絡先" + '<span class="req">必須</span>'));
+    contact.appendChild(el("p", { class: "q-help", style: "margin:0 0 12px" }, "リリース情報と先行体験のご案内をお送りします。"));
     var grid = el("div", { class: "contact-grid" });
-    var f1 = el("div", { class: "field" });
-    f1.appendChild(el("label", { class: "q-label", for: p + "company" }, "会社名"));
-    f1.appendChild(el("input", { type: "text", id: p + "company", name: "company", autocomplete: "organization", maxlength: "200" }));
-    var f2 = el("div", { class: "field" });
-    f2.appendChild(el("label", { class: "q-label", for: p + "email" }, "メールアドレス"));
-    f2.appendChild(el("input", { type: "email", id: p + "email", name: "email", autocomplete: "email", inputmode: "email", maxlength: "200", placeholder: "name@example.com" }));
-    grid.appendChild(f1); grid.appendChild(f2);
+    [
+      { name: "company", label: "会社名", type: "text", ac: "organization" },
+      { name: "name", label: "お名前", type: "text", ac: "name" },
+      { name: "email", label: "メールアドレス", type: "email", ac: "email", ph: "name@example.com", wide: true },
+    ].forEach(function (f) {
+      var box = el("div", { class: "field" + (f.wide ? " field-wide" : "") });
+      box.appendChild(el("label", { class: "q-label", for: p + f.name }, esc(f.label)));
+      box.appendChild(el("input", { type: f.type, id: p + f.name, name: f.name, autocomplete: f.ac, maxlength: "200",
+        placeholder: f.ph || "", inputmode: f.type === "email" ? "email" : null, required: true }));
+      grid.appendChild(box);
+    });
     contact.appendChild(grid);
-    contact.appendChild(el("p", { class: "q-error", role: "alert", "data-email-error": "1" }, "メールアドレスの形式をご確認ください"));
+    contact.appendChild(el("p", { class: "q-error", role: "alert", "data-contact-error": "1" }, ""));
     form.appendChild(contact);
 
     // honeypot
@@ -333,7 +337,7 @@
     var submit = el("div", { class: "submit-area" });
     submit.appendChild(el("button", { type: "submit", class: "btn btn-primary" }, "この内容で送信する"));
     submit.appendChild(el("p", { class: "form-status", role: "status", "aria-live": "polite" }));
-    submit.appendChild(el("p", { class: "privacy" }, "ご回答内容は、サービス開発とリリースのご案内にのみ利用します。<br>メールアドレスはご記入いただいた場合のみ、リリース情報のお知らせに使用します。"));
+    submit.appendChild(el("p", { class: "privacy" }, "ご回答内容は、サービス開発とリリースのご案内にのみ利用します。<br>ご連絡先は、リリース情報と先行体験のご案内以外には使用しません。"));
     form.appendChild(submit);
 
     // その他欄の開閉
@@ -348,6 +352,7 @@
       }
       var fsx = t.closest && t.closest("fieldset.q");
       if (fsx) fsx.classList.remove("has-error");
+      if (t.getAttribute && t.getAttribute("aria-invalid") === "true" && t.value.trim()) t.setAttribute("aria-invalid", "false");
     });
 
     form.addEventListener("submit", function (e) { e.preventDefault(); onSubmit(form); });
@@ -377,6 +382,7 @@
       }
     });
     data.company = form.elements.company.value.trim();
+    data.name = form.elements.namedItem("name").value.trim();
     data.email = form.elements.email.value.trim();
     return data;
   }
@@ -389,10 +395,22 @@
       fs.classList.toggle("has-error", !ok);
       if (!ok && !firstBad) firstBad = fs;
     });
-    var emailBox = form.querySelector("[data-email-error]").parentNode;
+    var contactErr = form.querySelector("[data-contact-error]");
+    var contactBox = contactErr.parentNode;
+    var missing = [["company", "会社名"], ["name", "お名前"], ["email", "メールアドレス"]].filter(function (f) {
+      var bad = !data[f[0]];
+      form.elements.namedItem(f[0]).setAttribute("aria-invalid", bad ? "true" : "false");
+      return bad;
+    });
     var emailOk = !data.email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
-    emailBox.classList.toggle("has-error", !emailOk);
-    if (!emailOk && !firstBad) firstBad = emailBox;
+    if (!emailOk) form.elements.email.setAttribute("aria-invalid", "true");
+    var contactOk = !missing.length && emailOk;
+    var msgs = [];
+    if (missing.length) msgs.push(missing.map(function (f) { return f[1]; }).join("・") + "をご記入ください");
+    if (!emailOk) msgs.push("メールアドレスの形式をご確認ください");
+    contactErr.textContent = msgs.join("／");
+    contactBox.classList.toggle("has-error", !contactOk);
+    if (!contactOk && !firstBad) firstBad = contactBox;
     if (firstBad) {
       firstBad.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
       var inp = firstBad.querySelector("input");

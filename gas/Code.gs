@@ -13,7 +13,7 @@
 var SURVEY_COLUMNS = [
   'sent_at', 'position', 'role', 'revit', 'expectation', 'intent',
   'targets', 'pain', 'pain_other', 'wishes', 'wishes_other', 'wish_free',
-  'company', 'email',
+  'company', 'name', 'email',
   'visitor_id', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'user_agent'
 ];
 var VISIT_COLUMNS = [

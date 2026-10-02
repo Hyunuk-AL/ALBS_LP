@@ -404,6 +404,8 @@ p { margin: 0; }
 .contact-grid { display: grid; gap: 14px; }
 @media (min-width: 640px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
 .contact-grid .q-label { font-size: 14px; }
+@media (min-width: 640px) { .contact-grid .field-wide { grid-column: 1 / -1; } }
+.field input[aria-invalid="true"] { border-color: var(--brand); background: var(--brand-soft); }
 .q-error { color: var(--brand); font-size: 13px; font-weight: 700; margin-top: 8px; display: none; }
 .q.has-error .q-error { display: block; }
 .q.has-error .choice label { border-color: rgba(168, 0, 31, .45); }
