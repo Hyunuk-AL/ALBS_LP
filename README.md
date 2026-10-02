@@ -35,3 +35,8 @@ python3 -m http.server 8000
 - メインカラー：設計書の「#60012」は5桁表記のため、仮で `#A8001F` を使用中（`style.css` の `--brand`）
 - リリース時期・プラン表記・各建具の仕様例（Notion設計書の値を使用）
 - お問い合わせ先 `support@arch-log.com`
+
+## claude.ai Artifact 版
+`python3 artifact/build.py <出力.html>` で、LP を Artifact 用の単一 HTML にまとめます。
+Artifact 版ではアンケート回答と訪問ログを artifact のデータベースに保存し、編集権限のある人にだけ「アンケート集計」パネルを表示します。
+回答できるのは claude.ai にサインインし、共有設定で Contributor 以上の権限を持つ人（組織メンバー）です。社外の一般公開には Web 版（GitHub Pages 等 + Apps Script）を使ってください。

@@ -38,7 +38,10 @@
   };
 
   /* ---------------- sending ---------------- */
+  var ADAPTER = window.LP_ADAPTER || null; // 埋め込み先ごとの送信処理（artifact 版など）
+
   function send(payload) {
+    if (ADAPTER) return ADAPTER.send(Object.assign({ sent_at: new Date().toISOString() }, context, payload));
     var body = JSON.stringify(Object.assign({ sent_at: new Date().toISOString() }, context, payload));
     if (!CONFIG.SURVEY_ENDPOINT) {
       // 送信先未設定：動作確認用にローカル保存
@@ -76,7 +79,7 @@
   }
 
   /* ---------------- visit log ---------------- */
-  if (CONFIG.TRACK_VISITS && CONFIG.SURVEY_ENDPOINT) {
+  if (CONFIG.TRACK_VISITS && (CONFIG.SURVEY_ENDPOINT || ADAPTER)) {
     send({ type: "visit" }).catch(function () {});
   }
 
@@ -399,11 +402,11 @@
         track("survey_submit", { position: form.getAttribute("data-position"), expectation: data.expectation, intent: data.intent });
         document.querySelectorAll(".survey-mount").forEach(function (m) { showThanks(m, !!data.email); });
       })
-      .catch(function () {
+      .catch(function (err) {
         btn.disabled = false;
         btn.textContent = "この内容で送信する";
         status.classList.add("is-error");
-        status.textContent = "送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。";
+        status.textContent = (err && err.userMessage) || "送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。";
       });
   }
 
@@ -418,6 +421,10 @@
       "</p>";
     mount.appendChild(box);
   }
+
+  window.LP_showThanksAll = function () {
+    document.querySelectorAll(".survey-mount").forEach(function (m) { showThanks(m, false); });
+  };
 
   var alreadyDone = lsGet(STORAGE_DONE) === "1";
   document.querySelectorAll(".survey-mount").forEach(function (mount) {
