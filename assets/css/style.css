@@ -98,7 +98,8 @@ p { margin: 0; }
   padding: 4px 12px; border-radius: 999px; font-family: var(--font); font-size: 13px;
 }
 .hero h1 .nw { white-space: nowrap; }
-.hero h1 { font-size: clamp(28px, 4.4vw, 50px); font-weight: 900; margin: 20px 0 22px; color: var(--navy); }
+.kicker { margin-top: 22px; font-size: clamp(18px, 2.2vw, 24px); font-weight: 700; letter-spacing: .08em; color: var(--steel); }
+.hero h1 { font-size: clamp(38px, 6.4vw, 66px); font-weight: 900; margin: 6px 0 22px; color: var(--navy); }
 .hero h1 em { font-style: normal; color: var(--brand); position: relative; }
 .hero h1 em::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: .06em; height: .18em;
