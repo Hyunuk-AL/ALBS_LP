@@ -169,9 +169,10 @@ p { margin: 0; }
 .before li::before { background: var(--steel-light); color: #fff; }
 .after { background: var(--brand-soft); border: 2px solid var(--brand); }
 .after h3 { color: var(--brand); }
-.after li { font-weight: 700; font-size: 18px; }
+.after { display: flex; flex-direction: column; }
+.after li { font-weight: 700; font-size: 21.6px; }
 .after li::before { background: var(--brand); color: #fff; }
-.compare-note { margin-top: 22px; font-weight: 900; font-size: 20px; color: var(--navy); line-height: 1.5; }
+.compare-note { margin-top: auto; padding-top: 22px; font-weight: 900; font-size: 20px; color: var(--navy); line-height: 1.5; }
 .compare-arrow { position: relative; min-height: 40px; }
 .compare-arrow::after {
   content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(90deg);
@@ -200,6 +201,7 @@ p { margin: 0; }
 }
 .product-copy > p:not(.section-label):not(.result-chip) { color: var(--muted); }
 .product-copy strong { color: var(--text); }
+.product-copy .em-pick { color: var(--brand); font-size: 1.2em; }
 
 .spec-list { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 8px; max-width: 440px; }
 .spec-list li {
@@ -426,7 +428,7 @@ p { margin: 0; }
 .thanks p { color: var(--muted); }
 
 /* ---------- Footer ---------- */
-.site-footer { background: #0E1422; color: #8C95A6; padding: 40px 0 96px; font-size: 13px; }
+.site-footer { background: #0E1422; color: #8C95A6; padding: 40px 0; font-size: 13px; }
 .footer-inner { display: grid; gap: 20px; }
 @media (min-width: 800px) { .footer-inner { grid-template-columns: 1fr auto; align-items: end; } .site-footer { padding-bottom: 40px; } }
 .site-footer .logo-text { color: #fff; margin-bottom: 8px; }
@@ -435,14 +437,6 @@ p { margin: 0; }
 @media (min-width: 800px) { .footer-links { text-align: right; } }
 .footer-links a { color: #C5CCD8; }
 
-/* ---------- Floating CTA (mobile) ---------- */
-.float-cta {
-  position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 40; display: flex; justify-content: center; align-items: center;
-  min-height: 52px; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 700; text-decoration: none;
-  box-shadow: 0 10px 30px rgba(168, 0, 31, .35); transform: translateY(140%); transition: transform .3s;
-}
-.float-cta.is-show { transform: none; }
-@media (min-width: 900px) { .float-cta { display: none; } }
 
 /* ---------- Door variants gallery ---------- */
 .variants { margin-top: 72px; }

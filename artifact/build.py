@@ -37,7 +37,6 @@ css += """
 :root { color-scheme: light; }
 body { background: var(--bg); color: var(--text); }
 .site-header { top: env(safe-area-inset-top, 0px); }
-.float-cta { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
 .selectable { user-select: all; color: #C5CCD8; }
 /* 静止状態では組み上がった姿を見せ、再生時に分解位置から組み立て直す */
 .js .asm .part { opacity: 1; transform: none; }

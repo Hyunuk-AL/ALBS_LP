@@ -471,22 +471,4 @@
     if (alreadyDone) { showThanks(mount, false); return; }
     mount.appendChild(buildForm(mount.getAttribute("data-position")));
   });
-
-  /* ---------------- floating CTA ---------------- */
-  var floatCta = document.querySelector(".float-cta");
-  var surveys = document.querySelectorAll(".survey-section");
-  if (floatCta && "IntersectionObserver" in window) {
-    var visible = new Set();
-    var pastHero = false;
-    var update = function () { floatCta.classList.toggle("is-show", pastHero && visible.size === 0 && lsGet(STORAGE_DONE) !== "1"); };
-    var so = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target); });
-      update();
-    }, { threshold: 0.05 });
-    surveys.forEach(function (s) { so.observe(s); });
-    window.addEventListener("scroll", function () {
-      var np = window.scrollY > window.innerHeight * 0.9;
-      if (np !== pastHero) { pastHero = np; update(); }
-    }, { passive: true });
-  }
 })();
