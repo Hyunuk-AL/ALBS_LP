@@ -26,7 +26,7 @@ python3 -m http.server 8000
 `survey_click`（アンケートボタンのクリック） / `view_animation`
 
 ## 公開前の確認事項
-- メインカラー：設計書の「#60012」は5桁表記のため、仮で `#A8001F` を使用中（`style.css` の `--brand`）
+- メインカラー：`#E60012`（`style.css` の `--brand`）
 - リリース時期・プラン表記・各建具の仕様例（Notion設計書の値を使用）
 - お問い合わせ先 `support@arch-log.com`
 
