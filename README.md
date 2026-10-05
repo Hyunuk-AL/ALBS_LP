@@ -1,6 +1,7 @@
 # Arch-LINC BIM Standard｜タイプ生成 LP
 
-2027年1月末の正式リリースに向けた、リリース予告とニーズ把握アンケート用のランディングページです（ビルド不要の静的サイト）。
+2027年1月末の正式リリースに向けたリリース予告ページです（ビルド不要の静的サイト）。
+アンケートは Notion フォーム（https://keen-airboat-177.notion.site/8fdcff9bd17440d4af2c0ebf24754964?pvs=105）へのリンクで受け付けます（`data-survey-link` の付いたボタン）。
 
 ## 構成
 ```
@@ -17,19 +18,12 @@ python3 -m http.server 8000
 # → http://localhost:8000
 ```
 
-## アンケートの受信設定（Google スプレッドシート）
-1. Google スプレッドシートを新規作成 → 拡張機能 → Apps Script
-2. `gas/Code.gs` を貼り付けて保存
-3. デプロイ → 新しいデプロイ → 種類「ウェブアプリ」／実行ユーザー「自分」／アクセス「全員」
-4. 発行された `https://script.google.com/macros/s/.../exec` を `assets/js/config.js` の `SURVEY_ENDPOINT` に設定
-
-- `survey` シート：アンケート回答（どちらのフォームから送られたか `position` = top / bottom 付き）
-- `visits` シート：訪問ログ（匿名ID・参照元・UTM）。不要なら `TRACK_VISITS: false`
-- `SURVEY_ENDPOINT` が空の間は、回答はブラウザの localStorage に保存されコンソールに出力されます（動作確認用）
+## 訪問ログ（任意）
+`gas/Code.gs` を Apps Script のウェブアプリとしてデプロイし、その URL を `assets/js/config.js` の `SURVEY_ENDPOINT` に設定すると、`visits` シートに訪問ログ（匿名ID・参照元・UTM）が記録されます。
 
 ## 訪問者分析（任意）
 `config.js` の `GA_MEASUREMENT_ID` に GA4 の測定ID を設定すると、ページビューに加えて次のイベントを送信します。
-`survey_start` / `survey_submit` / `view_animation` / `replay_animation`
+`survey_click`（アンケートボタンのクリック） / `view_animation`
 
 ## 公開前の確認事項
 - メインカラー：設計書の「#60012」は5桁表記のため、仮で `#A8001F` を使用中（`style.css` の `--brand`）
@@ -37,6 +31,4 @@ python3 -m http.server 8000
 - お問い合わせ先 `support@arch-log.com`
 
 ## claude.ai Artifact 版
-`python3 artifact/build.py <出力.html>` で、LP を Artifact 用の単一 HTML にまとめます。
-Artifact 版ではアンケート回答と訪問ログを artifact のデータベースに保存し、編集権限のある人にだけ「アンケート集計」パネルを表示します。
-回答できるのは claude.ai にサインインし、共有設定で Contributor 以上の権限を持つ人（組織メンバー）です。社外の一般公開には Web 版（GitHub Pages 等 + Apps Script）を使ってください。
+`python3 artifact/build.py <出力.html>` で、LP を Artifact 用の単一 HTML にまとめます（画像は data URI で埋め込み）。
