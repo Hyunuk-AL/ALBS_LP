@@ -15,9 +15,9 @@ body = re.sub(r'src="(assets/img/[^"]+\.jpg)"',
 fonts = re.search(r'<link href="https://fonts.googleapis.com[^>]+>', html).group(0)
 
 # Artifact 内では mailto が届かない閲覧者がいるため、宛先はテキストとして見せる
-body = body.replace('<a href="mailto:support@arch-log.com">お問い合わせ：support@arch-log.com</a>',
-                    '<span>お問い合わせ：<span class="selectable">support@arch-log.com</span></span>')
-body = body.replace('<a href="mailto:support@arch-log.com">support@arch-log.com</a>', "support@arch-log.com")
+body = body.replace('<a href="mailto:support.linc@m-arch-log.com">お問い合わせ：support.linc@m-arch-log.com</a>',
+                    '<span>お問い合わせ：<span class="selectable">support.linc@m-arch-log.com</span></span>')
+body = body.replace('<a href="mailto:support.linc@m-arch-log.com">support.linc@m-arch-log.com</a>', "support.linc@m-arch-log.com")
 
 # Artifact 用の微調整（ライトテーマ固定・セーフエリア）
 css += """
