@@ -34,7 +34,7 @@ python3 -m http.server 8000
 - **Remotion のライセンス**：`assets/video/` は Remotion で書き出した。従業員 4 人以上の営利企業が商用で使うには Company License（有料）が必要（https://www.remotion.dev/license）。公開前に購入要否を判断する
 - メインカラー：`#E60012`（`style.css` の `--brand`）
 - リリース時期・プラン表記・各建具の仕様例（Notion設計書の値を使用）
-- お問い合わせ先 `support.linc@m-arch-log.com`
+- お問い合わせ先 `support.lmos@m-arch-log.com`
 
 ## claude.ai Artifact 版
 `python3 artifact/build.py <出力.html>` で、LP を Artifact 用の単一 HTML にまとめます（画像は data URI で埋め込み）。
