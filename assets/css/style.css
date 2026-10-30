@@ -279,8 +279,8 @@ p { margin: 0; }
 .v-scroll { min-width: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding-bottom: 4px; }
 .v-tiles { list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; }
 @media (min-width: 900px) { .v-tiles { flex-wrap: wrap; row-gap: clamp(8px, 1.4svh, 20px); } }
-/* 1 つずつ正方形カード。.vt は登場アニメーション、.vt-card はマウスに合わせた 3D チルト */
-.vt { flex: none; perspective: 520px; --vt: clamp(56px, min(5.2vw, 8.4svh), 112px); }
+/* 1 つずつ正方形カード。.vt は登場アニメーション、.vt-card はホバーで絵を拡大 */
+.vt { flex: none; --vt: clamp(56px, min(5.2vw, 8.4svh), 112px); }
 .v-panel .vt { --vt: clamp(74px, min(6.5vw, 10svh), 132px); } /* パネルは縦長の絵なので大きめ */
 @media (max-width: 899px) { .v-panel .vt { --vt: 110px; } } /* スマホは横スクロールの列なので高さの制約がない */
 /* パネルの絵は上部が余白なので、カードの中で 1.2 倍に拡大（扉の下端を基準に） */
@@ -290,15 +290,19 @@ p { margin: 0; }
 .vt-card {
   position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px;
   width: var(--vt); height: var(--vt); padding: 6px 4px 5px; background: #fff; border-radius: 12px; overflow: hidden;
-  box-shadow: 0 1px 2px rgba(28, 28, 28, .06); transition: rotate .35s var(--ease), box-shadow .35s var(--ease); will-change: rotate;
+  box-shadow: 0 1px 2px rgba(28, 28, 28, .06); transition: box-shadow .35s var(--ease);
 }
 .vt-card img { display: block; flex: 1 1 0; width: 100%; height: 0; min-height: 0; object-fit: contain; border-radius: 6px; }
 .vt-card > span:last-child { flex: none; font-size: clamp(9px, .55vw, 11px); line-height: 1.25; color: var(--gray); text-align: center; max-width: 100%; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; word-break: normal; overflow-wrap: anywhere; }
 .vt-more .vt-card > span:last-child { display: none; }
-/* 光の反射：カーソル位置に白いハイライト */
-.vt-card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 60%); }
-.vt-card.is-tilt { transition: rotate .08s linear, box-shadow .35s var(--ease); box-shadow: 0 12px 24px rgba(28, 28, 28, .14); }
-.vt-card.is-tilt::after { opacity: 1; }
+/* ホバーで絵を拡大。名前の帯を白地で上に重ね、はみ出した絵を隠す */
+.vt-card > span:last-child { position: relative; z-index: 1; align-self: stretch; background: #fff; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .vt-card img { transition: scale .45s var(--ease); }
+  .vt-card:hover { box-shadow: 0 12px 24px rgba(28, 28, 28, .14); }
+  .vt-card:hover img { scale: 1.25; }
+  .v-panel .vt-card:hover img { scale: 1.45; }
+}
 .v-tiles { gap: clamp(6px, .6vw, 10px); }
 .more-box { width: clamp(50px, min(5.6vw, 7.4svh), 108px); height: clamp(50px, min(5.6vw, 7.4svh), 108px); }
 /* パネル：床ラインが1本につながって見えるよう隙間なく並べる */

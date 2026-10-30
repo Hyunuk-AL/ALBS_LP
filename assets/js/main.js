@@ -119,28 +119,6 @@
   window.addEventListener("resize", fitPanelLabels);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPanelLabels);
 
-  /* ---------------- バリエーションの正方形カード：3D チルト ---------------- */
-  if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    var TILT = 14; // 最大傾き（度）
-    document.querySelectorAll(".vt-card").forEach(function (card) {
-      card.addEventListener("pointermove", function (e) {
-        var r = card.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width * 2 - 1; // -1〜1
-        var py = (e.clientY - r.top) / r.height * 2 - 1;
-        var mag = Math.min(1, Math.hypot(px, py));
-        card.classList.add("is-tilt");
-        // 回転軸はカーソルの向きに直交（右を押せば右が奥へ）
-        card.style.rotate = (-py).toFixed(3) + " " + px.toFixed(3) + " 0 " + (TILT * mag).toFixed(2) + "deg";
-        card.style.setProperty("--gx", ((px + 1) * 50).toFixed(1) + "%");
-        card.style.setProperty("--gy", ((py + 1) * 50).toFixed(1) + "%");
-      });
-      card.addEventListener("pointerleave", function () {
-        card.classList.remove("is-tilt");
-        card.style.rotate = "";
-      });
-    });
-  }
-
   /* ---------------- 3D 動画：スマホは正方形・文字大きめの版へ ---------------- */
   if (window.matchMedia("(max-width: 759px)").matches) {
     document.querySelectorAll(".asm-video").forEach(function (v) {
