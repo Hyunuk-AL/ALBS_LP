@@ -82,34 +82,85 @@
     send({ type: "visit" }).catch(function () {});
   }
 
-  /* ---------------- hero cycle ---------------- */
-  var HERO = [
-    { key: "door", kind: "ドア", form: "片開き戸", size: "W900 H2100", type: "WD_01（900×2100_01）" },
-    { key: "window", kind: "窓", form: "連窓 2", size: "W1800 H1200", type: "AW-1" },
-    { key: "shutter", kind: "シャッター", form: "軽量・天井付", size: "W3000 H2500", type: "軽量_W3000×H2500" },
-  ];
-  var heroIdx = 0;
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function heroShow(i) {
-    var d = HERO[i];
-    var fields = document.querySelectorAll("[data-hero]");
-    fields.forEach(function (el) { el.classList.add("is-fading"); });
-    setTimeout(function () {
-      fields.forEach(function (el) {
-        el.textContent = d[el.getAttribute("data-hero")];
-        el.classList.remove("is-fading");
+
+  /* ---------------- ヒーロー：タイプ生成カードの 3D ループ ---------------- */
+  var cardVideos = [].slice.call(document.querySelectorAll(".tb-video"));
+  if (cardVideos.length && !reduceMotion) {
+    var cardsStarted = false;
+    var playCards = function () {
+      cardVideos.forEach(function (v, i) {
+        // 4 枚が同時に組み上がらないよう、再生位置を少しずつずらす
+        if (!cardsStarted) { try { v.currentTime = i * 1.1; } catch (e) { /* ignore */ } }
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
       });
-    }, 250);
-    document.querySelectorAll("[data-hero-icon]").forEach(function (el) {
-      el.classList.toggle("is-show", el.getAttribute("data-hero-icon") === d.key);
+      cardsStarted = true;
+    };
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) playCards(); else cardVideos.forEach(function (v) { v.pause(); });
+      }, { threshold: 0.15 }).observe(document.querySelector(".tool-board"));
+    } else {
+      playCards();
+    }
+  }
+
+  /* ---------------- パネル名を 1 行に収める（長い名前だけ文字を縮める） ---------------- */
+  var panelLabels = [].slice.call(document.querySelectorAll(".v-panel .vt-card > span:last-child"));
+  function fitPanelLabels() {
+    panelLabels.forEach(function (el) {
+      el.style.fontSize = "";
+      var base = parseFloat(getComputedStyle(el).fontSize);
+      var room = el.parentNode.clientWidth - 8;
+      if (el.scrollWidth > room) el.style.fontSize = Math.max(6, base * room / el.scrollWidth).toFixed(2) + "px";
     });
   }
-  if (!reduceMotion) {
-    setInterval(function () { heroIdx = (heroIdx + 1) % HERO.length; heroShow(heroIdx); }, 3200);
+  fitPanelLabels();
+  window.addEventListener("resize", fitPanelLabels);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPanelLabels);
+
+  /* ---------------- バリエーションの正方形カード：3D チルト ---------------- */
+  if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var TILT = 14; // 最大傾き（度）
+    document.querySelectorAll(".vt-card").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width * 2 - 1; // -1〜1
+        var py = (e.clientY - r.top) / r.height * 2 - 1;
+        var mag = Math.min(1, Math.hypot(px, py));
+        card.classList.add("is-tilt");
+        // 回転軸はカーソルの向きに直交（右を押せば右が奥へ）
+        card.style.rotate = (-py).toFixed(3) + " " + px.toFixed(3) + " 0 " + (TILT * mag).toFixed(2) + "deg";
+        card.style.setProperty("--gx", ((px + 1) * 50).toFixed(1) + "%");
+        card.style.setProperty("--gy", ((py + 1) * 50).toFixed(1) + "%");
+      });
+      card.addEventListener("pointerleave", function () {
+        card.classList.remove("is-tilt");
+        card.style.rotate = "";
+      });
+    });
+  }
+
+  /* ---------------- 3D 動画：スマホは正方形・文字大きめの版へ ---------------- */
+  if (window.matchMedia("(max-width: 759px)").matches) {
+    document.querySelectorAll(".asm-video").forEach(function (v) {
+      v.poster = v.poster.replace(/(\w+)\.jpg$/, "$1-sp.jpg");
+      v.src = v.getAttribute("src").replace(/(\w+)\.mp4$/, "$1-sp.mp4");
+    });
   }
 
   /* ---------------- assembly animations ---------------- */
+  // 3D 動画（motion/ で書き出し）は仕様リストと同じ秒数で組み上がるので、同時に頭から再生する
+  function playVideo(v) {
+    if (!v || v.tagName !== "VIDEO" || reduceMotion) return;
+    v.preload = "auto";
+    try { v.currentTime = 0; } catch (e) { /* ignore */ }
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+
   function playAnim(name) {
+    playVideo(document.getElementById("anim-" + name));
     var targets = [
       document.getElementById("anim-" + name),
       document.querySelector('[data-anim-target="' + name + '"]'),
@@ -127,13 +178,20 @@
   function resetAnim(name) {
     var svg = document.getElementById("anim-" + name);
     var list = document.querySelector('[data-anim-target="' + name + '"]');
+    if (svg && svg.tagName === "VIDEO") svg.pause();
     [svg, list, list && list.closest(".product-copy")].forEach(function (el) { if (el) el.classList.remove("is-play"); });
   }
 
   ["door", "window", "shutter"].forEach(function (name) {
     var svg = document.getElementById("anim-" + name);
     if (!svg) return;
-    if (!("IntersectionObserver" in window)) { playAnim(name); return; }
+    if (!("IntersectionObserver" in window)) { svg.preload = "auto"; playAnim(name); return; }
+    // 1 画面手前で読み込みを始め、入った瞬間に再生できるようにする
+    var pre = new IntersectionObserver(function (entries) {
+      // 再生が先に始まっていたら load() で中断させない
+      if (entries[0].isIntersecting) { svg.preload = "auto"; if (svg.readyState === 0 && svg.paused) svg.load(); pre.disconnect(); }
+    }, { rootMargin: "100% 0px 100% 0px" });
+    pre.observe(svg);
     // 画面に入るたびに再生し、画面外に出たら初期状態へ戻す
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -169,6 +227,44 @@
       vRows.forEach(function (r) { vo.observe(r); });
     }
   }
+
+  /* ---------------- snap：最後のパネル＋フッターで 1 画面 ---------------- */
+  var footer = document.querySelector(".site-footer");
+  function setFooterH() { if (footer) document.documentElement.style.setProperty("--footer-h", footer.offsetHeight + "px"); }
+  setFooterH();
+  window.addEventListener("resize", setFooterH);
+
+  /* ---------------- magnet：パネルの頭が画面上端に近づいて止まったら、軽くドッキング（PC） ---------------- */
+  var magnetMq = window.matchMedia("(min-width: 1024px) and (min-height: 700px)");
+  var panels = [].slice.call(document.querySelectorAll(".snap"));
+  var HEADER_H = 52;
+  var settleTimer = null, docking = false, lastY = window.scrollY, dir = 0;
+
+  function magnetSettle() {
+    if (!magnetMq.matches) return;
+    if (docking) { docking = false; return; }
+    // 吸い付く範囲：画面の高さの 12%（最大 120px）以内
+    var range = Math.min(120, window.innerHeight * 0.12);
+    var y = window.scrollY, best = null;
+    panels.forEach(function (p) {
+      var d = p.getBoundingClientRect().top - HEADER_H; // パネルの頭とヘッダー下端の差
+      // 進んでいる向きから近づいてくるパネルだけ（離れていくパネルへは引き戻さない）
+      if (d * dir < 0) return;
+      if (Math.abs(d) < range && (best === null || Math.abs(d) < Math.abs(best))) best = d;
+    });
+    if (best === null || Math.abs(best) < 2) return;
+    docking = true;
+    window.scrollTo({ top: y + best, behavior: reduceMotion ? "auto" : "smooth" });
+  }
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY;
+    if (!docking && y !== lastY) dir = y > lastY ? 1 : -1;
+    lastY = y;
+    if (!("onscrollend" in window)) { clearTimeout(settleTimer); settleTimer = setTimeout(magnetSettle, 180); }
+  }, { passive: true });
+  if ("onscrollend" in window) window.addEventListener("scrollend", magnetSettle);
+  // ユーザーが操作したら、吸い付き中の扱いを解除
+  ["wheel", "touchstart", "keydown"].forEach(function (ev) { window.addEventListener(ev, function () { docking = false; }, { passive: true }); });
 
   /* ---------------- survey link ---------------- */
   document.querySelectorAll("[data-survey-link]").forEach(function (a) {
