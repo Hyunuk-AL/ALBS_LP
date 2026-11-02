@@ -375,11 +375,9 @@ p { margin: 0; }
 .footer-links a { color: var(--ink-2); }
 
 @media (prefers-reduced-motion: reduce) {
+  /* 3D 動画・仕様リスト・バリエーション一覧の動きは製品説明なので止めない（画面に入るたび 1 回だけ再生、main.js） */
   html { scroll-behavior: auto; }
-  .js .product-copy .result-chip { opacity: 1 !important; transform: none !important; animation: none !important; }
-  .v-row.is-play .vt, .v-row.is-play .v-head { animation: none; }
   .vt-card { transition: none; }
-  .spec-list.is-play .pick, .spec-list.is-play .v-ph, .spec-list.is-play .v-val { animation: none; }
 }
 
 /* ---------- 1 パネル＝1 画面のスナップ ----------

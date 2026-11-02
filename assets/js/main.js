@@ -86,7 +86,29 @@
 
   /* ---------------- ヒーロー：タイプ生成カードの 3D ループ ---------------- */
   var cardVideos = [].slice.call(document.querySelectorAll(".tb-video"));
-  if (cardVideos.length && !reduceMotion) {
+  // OS の「アニメーション効果」がオフの人：ループせず、画面に入るたびに頭から 1 回だけ再生
+  if (cardVideos.length && reduceMotion) {
+    var cardTimers = [];
+    var stopCards = function () {
+      cardTimers.forEach(clearTimeout); cardTimers = [];
+      cardVideos.forEach(function (v) { v.pause(); try { v.currentTime = 0; } catch (e) { /* ignore */ } });
+    };
+    var playCardsOnce = function () {
+      stopCards();
+      cardVideos.forEach(function (v, i) {
+        v.loop = false;
+        // 4 枚が同時に組み上がらないよう、開始を少しずつずらす
+        cardTimers.push(setTimeout(function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); }, i * 400));
+      });
+    };
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) playCardsOnce(); else stopCards();
+      }, { threshold: 0.15 }).observe(document.querySelector(".tool-board"));
+    } else {
+      playCardsOnce();
+    }
+  } else if (cardVideos.length) {
     var cardsStarted = false;
     var playCards = function () {
       cardVideos.forEach(function (v, i) {
@@ -129,8 +151,9 @@
 
   /* ---------------- assembly animations ---------------- */
   // 3D 動画（motion/ で書き出し）は仕様リストと同じ秒数で組み上がるので、同時に頭から再生する
+  // 製品の説明そのものなので、OS のアニメーション効果がオフでも再生する（ループなし・画面に入るたび 1 回）
   function playVideo(v) {
-    if (!v || v.tagName !== "VIDEO" || reduceMotion) return;
+    if (!v || v.tagName !== "VIDEO") return;
     v.preload = "auto";
     try { v.currentTime = 0; } catch (e) { /* ignore */ }
     var p = v.play();
@@ -178,7 +201,7 @@
             playAnim(name);
             track("view_animation", { item: name });
           }
-        } else if (!e.isIntersecting && !reduceMotion) {
+        } else if (!e.isIntersecting) {
           resetAnim(name); // 完全に画面外へ出たときだけ戻す
         }
       });
@@ -193,7 +216,7 @@
     void row.getBoundingClientRect();
     row.classList.add("is-play");
   }
-  if (vRows.length && !reduceMotion) {
+  if (vRows.length) {
     if ("IntersectionObserver" in window) {
       // 画面に入る少し手前で開始し、画面外に出たらリセット（入るたびに再生）
       var vo = new IntersectionObserver(function (entries) {
