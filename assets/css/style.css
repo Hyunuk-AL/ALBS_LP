@@ -297,7 +297,8 @@ p { margin: 0; }
 .vt-more .vt-card > span:last-child { display: none; }
 /* ホバーで絵を拡大。名前の帯を白地で上に重ね、はみ出した絵を隠す */
 .vt-card > span:last-child { position: relative; z-index: 1; align-self: stretch; background: #fff; }
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+/* パネル・枠・沓摺のカードの拡大は、OS のアニメーション効果がオフでも動かす */
+@media (hover: hover) and (pointer: fine) {
   .vt-card img { transition: scale .45s var(--ease); }
   .vt-card:hover { box-shadow: 0 12px 24px rgba(28, 28, 28, .14); }
   .vt-card:hover img { scale: 1.25; }
@@ -375,9 +376,8 @@ p { margin: 0; }
 .footer-links a { color: var(--ink-2); }
 
 @media (prefers-reduced-motion: reduce) {
-  /* 3D 動画・仕様リスト・バリエーション一覧の動きは製品説明なので止めない（画面に入るたび 1 回だけ再生、main.js） */
+  /* 3D 動画・仕様リスト・バリエーション一覧（ホバー拡大を含む）の動きは製品説明なので止めない（画面に入るたび 1 回だけ再生、main.js） */
   html { scroll-behavior: auto; }
-  .vt-card { transition: none; }
 }
 
 /* ---------- 1 パネル＝1 画面のスナップ ----------
