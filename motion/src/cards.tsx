@@ -3,7 +3,7 @@ import {Easing, useCurrentFrame} from 'remotion';
 import {Film} from './Film';
 import {Pose} from './lib/camera';
 import {ease, settle} from './lib/motion';
-import {FadeGroup, FloorGrid, GridLine} from './lib/three-kit';
+import {FloorGrid, GridLine} from './lib/three-kit';
 import {FPS} from './lib/theme';
 import * as Door from './models/Door';
 import * as Win from './models/Window';
@@ -12,9 +12,9 @@ import * as Wall from './models/Wall';
 
 /*
  * ヒーローのタイプ生成カード用ループ（正方形・文字なし）。
- * 0 秒は空 → 組み立て → ゆっくり回る → 消える → 6 秒で頭に戻る（継ぎ目なし）。
+ * 0 秒は空 → 組み立て → 回る → 5 秒で完成形のまま止まる（フェードアウトなし）。
  */
-export const CARD_SEC = 6;
+export const CARD_SEC = 5;
 const K = 0.55; // 組み立ての速さ（LP 本編の仕様リスト秒数に掛ける）
 
 const POSE: Pose = {target: [0, 0.78, 0], az: -32, el: 22, dist: 15.5, fov: 12};
@@ -27,18 +27,15 @@ const GRID: GridLine[] = [
 
 const Loop: React.FC<{children: (lf: number) => React.ReactNode; scale?: number; y?: number}> = ({children, scale = 1, y = 0}) => {
   const f = useCurrentFrame();
-  const grid = ease(f, 0, 0.5) * (1 - ease(f, CARD_SEC - 0.5, CARD_SEC - 0.05));
-  const out = ease(f, CARD_SEC - 0.75, CARD_SEC - 0.15);
+  const grid = ease(f, 0, 0.5);
   const rot = -0.3 + 0.55 * ease(f, 0, CARD_SEC, Easing.linear);
   return (
     <Film pose={POSE}>
       <group rotation={[0, rot, 0]}>
         <FloorGrid lines={GRID} opacity={grid * 0.9} bubbles={false} />
-        <FadeGroup o={1 - out}>
-          <group position={[0, y + out * 0.2, 0]} scale={scale}>
-            {children(f)}
-          </group>
-        </FadeGroup>
+        <group position={[0, y, 0]} scale={scale}>
+          {children(f)}
+        </group>
       </group>
     </Film>
   );
@@ -55,7 +52,7 @@ export const DoorCard: React.FC = () => (
           glass: settle(f, 2.0 * K, 0.8),
           louver: settle(f, 2.3 * K, 0.8),
           handle: settle(f, 2.6 * K, 0.8),
-          open: ease(f, 2.9, 3.6) - ease(f, 4.0, 4.7),
+          open: ease(f, 2.5, 3.1) - ease(f, 3.4, 4.0),
         }}
       />
     )}
@@ -83,7 +80,7 @@ export const ShutterCard: React.FC = () => (
   <Loop scale={0.6}>
     {(f) => {
       const down = ease(f, 1.3 * K, 1.3 * K + 1.4, Easing.bezier(0.25, 0.1, 0.25, 1));
-      const lift = ease(f, 3.2, 4.0) - ease(f, 4.3, 5.0);
+      const lift = ease(f, 2.5, 3.1) - ease(f, 3.4, 4.0);
       return (
         <Sh.ShutterModel
           pr={{

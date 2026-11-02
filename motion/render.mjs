@@ -7,16 +7,16 @@ const OUT = path.resolve('..', 'assets', 'video');
 mkdirSync(OUT, {recursive: true});
 
 const JOBS = [
-  {id: 'Door', file: 'door', poster: 239},
-  {id: 'Window', file: 'window', poster: 239},
-  {id: 'Shutter', file: 'shutter', poster: 239},
-  {id: 'DoorSP', file: 'door-sp', poster: 239},
-  {id: 'WindowSP', file: 'window-sp', poster: 239},
-  {id: 'ShutterSP', file: 'shutter-sp', poster: 239},
-  {id: 'CardDoor', file: 'card-door', poster: 110},
-  {id: 'CardWindow', file: 'card-window', poster: 110},
-  {id: 'CardShutter', file: 'card-shutter', poster: 110},
-  {id: 'CardWall', file: 'card-wall', poster: 110},
+  {id: 'Door', file: 'door', poster: 149},
+  {id: 'Window', file: 'window', poster: 149},
+  {id: 'Shutter', file: 'shutter', poster: 149},
+  {id: 'DoorSP', file: 'door-sp', poster: 149},
+  {id: 'WindowSP', file: 'window-sp', poster: 149},
+  {id: 'ShutterSP', file: 'shutter-sp', poster: 149},
+  {id: 'CardDoor', file: 'card-door', poster: 149},
+  {id: 'CardWindow', file: 'card-window', poster: 149},
+  {id: 'CardShutter', file: 'card-shutter', poster: 149},
+  {id: 'CardWall', file: 'card-wall', poster: 149},
 ];
 const only = process.argv.slice(2);
 const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';

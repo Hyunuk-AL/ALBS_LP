@@ -13,7 +13,9 @@ import * as Sh from './models/Shutter';
 /*
  * タイミングは LP の仕様リスト（.spec-list li の --d）と同じ秒数。
  * LP 側で仕様リストのアニメーションと同時に再生し、項目が選ばれた瞬間に部材が収まるようにする。
+ * 全体は 5 秒。組み上がった後の回り込み・開閉を詰めて収め、最後はフェードアウトせず完成形で止める。
  */
+export const FILM_SEC = 5;
 
 const tagState = (f: number, t: number) => ({
   appear: ease(f, t + 0.1, t + 0.75),
@@ -54,7 +56,7 @@ export const DoorFilm: React.FC<FilmProps> = ({ui = 1, zoom = 1}) => {
     {target: [-0.15, 0.82, 0.25], az: -34, el: 21, dist: 16.4, fov: FOV},
     {target: [-0.15, 0.82, 0.25], az: -29, el: 20, dist: 16.2, fov: FOV},
     3.8,
-    8,
+    FILM_SEC,
   ), zoom);
   const pr: Door.DoorProgress = {
     leaf: settle(f, 0.2, 1.1),
@@ -63,7 +65,7 @@ export const DoorFilm: React.FC<FilmProps> = ({ui = 1, zoom = 1}) => {
     glass: settle(f, 2.0, 0.8),
     louver: settle(f, 2.3, 0.8),
     handle: settle(f, 2.6, 0.8),
-    open: pulse(f, 4.4, 5.3, 5.9, 6.9),
+    open: pulse(f, 3.7, 4.15, 4.35, 4.85),
   };
   const openRad = -(40 * Math.PI) / 180 * pr.open;
   const P = makeProjector(pose, width, height);
@@ -119,7 +121,7 @@ export const WindowFilm: React.FC<FilmProps> = ({ui = 1, zoom = 1, shift = 0}) =
     {target: [0, WIN_Y + 0.2, 0.25], az: -32, el: 21, dist: 16.4, fov: FOV},
     {target: [0, WIN_Y + 0.2, 0.25], az: -26, el: 20, dist: 16.2, fov: FOV},
     3.6,
-    8,
+    FILM_SEC,
   ), zoom, shift);
   const pr: Win.WindowProgress = {
     frame: settle(f, 0.2),
@@ -180,10 +182,10 @@ export const ShutterFilm: React.FC<FilmProps> = ({ui = 1, zoom = 1}) => {
     {target: [-0.2, 1.05, 0.35], az: -32, el: 21, dist: 30.5, fov: FOV},
     {target: [-0.2, 1.05, 0.35], az: -26, el: 20, dist: 30, fov: FOV},
     3.8,
-    8,
+    FILM_SEC,
   ), zoom);
   const down = ease(f, 1.4, 3.2, Easing.bezier(0.25, 0.1, 0.25, 1));
-  const lift = pulse(f, 4.6, 5.7, 6.2, 7.3);
+  const lift = pulse(f, 3.5, 3.95, 4.2, 4.8);
   const pr: Sh.ShutterProgress = {
     railL: settle(f, 0.2),
     railR: settle(f, 0.3),
