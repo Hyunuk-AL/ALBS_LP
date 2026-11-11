@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Arch-LMOS｜タイプ生成 — 2027年1月末 正式リリース予定</title>
-  <meta name="description" content="メニューから、必要な形式を選ぶだけ。ファミリ編集の専門知識がなくても、ドア・窓・シャッターの標準ファミリを生成できるRevit向けBIM標準化パッケージ。2027年1月末 正式リリース予定。">
+  <title>Arch-LMOS｜タイプ生成</title>
+  <meta name="description" content="メニューから、必要な形式を選ぶだけ。ファミリ編集の専門知識がなくても、ドア・窓・シャッターの標準ファミリを生成できるRevit向けBIM標準化パッケージ。">
   <meta property="og:title" content="Arch-LMOS｜ドア・窓・シャッターのファミリ作成を、もっと手軽に。">
-  <meta property="og:description" content="ドア・窓・シャッターを選ぶだけで標準タイプを生成。2027年1月末 正式リリース予定。リリース前アンケート実施中。">
+  <meta property="og:description" content="ドア・窓・シャッターを選ぶだけで標準タイプを生成。">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,9 +27,12 @@
       <a href="#door">ドア</a>
       <a href="#window">窓</a>
       <a href="#shutter">シャッター</a>
-      <a href="#release">リリース</a>
+      <a href="#try">試してみる</a>
     </nav>
-    <a href="https://keen-airboat-177.notion.site/8fdcff9bd17440d4af2c0ebf24754964?pvs=105" target="_blank" rel="noopener" data-survey-link class="btn btn-primary btn-sm">アンケートに答えて今だけの特典をもらう</a>
+    <div class="header-cta">
+      <a href="https://dev.arch-lmos.com/signup" data-signup-link class="btn btn-primary btn-sm">申し込み</a>
+      <a href="https://dev.arch-lmos.com/login" data-login-link class="btn btn-secondary btn-sm">ログイン</a>
+    </div>
   </div>
 </header>
 
@@ -38,15 +41,14 @@
   <!-- ============ HERO ============ -->
   <section class="hero snap">
     <div class="container">
-      <p class="service-intro"><b>Arch-LMOS<span>（Architecture Lifecycle Model Operating System, アーク・エルモス）</span>とは、</b>BIMモデル（Model）の導入・活用・運用・改善（Lifecycle）を支える共通基盤（Operating System）です。<br>テンプレート・ファミリ・ツール・ナレッジを体系的に提供します。</p>
+      <p class="service-intro"><b>Arch-LMOS<span>（<span class="ini">A</span>rchitecture <span class="ini">L</span>ifecycle <span class="ini">M</span>odel <span class="ini">O</span>perating <span class="ini">S</span>ystem, アーク・エルモス）</span>とは、</b>BIMモデル（Model）の導入・活用・運用・改善（Lifecycle）を支える共通基盤（Operating System）です。<br>テンプレート・ファミリ・ツール・ナレッジを体系的に提供します。</p>
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="badge-release">2027年1月末 正式リリース予定</span></p>
           <h1><span class="h1-sub nw">ドア・窓・シャッターの</span><span class="h1-main nw">ファミリ作成を、</span><span class="h1-main nw"><em>もっと手軽に</em>。</span></h1>
           <p class="lead">メニューから、必要な形式を<strong>選ぶだけ</strong>。<br>ファミリ編集の専門知識がなくても、設計に必要な標準ファミリを生成できます。</p>
           <p class="lead-sub">「どう作るか」から、<em class="hl">「何を設計するか」</em>へ</p>
           <div class="hero-cta">
-            <a href="https://keen-airboat-177.notion.site/8fdcff9bd17440d4af2c0ebf24754964?pvs=105" target="_blank" rel="noopener" data-survey-link class="btn btn-primary btn-lg">アンケートに答えて今だけの特典をもらう</a>
+            <a href="https://dev.arch-lmos.com/signup" data-signup-link class="btn btn-primary btn-lg">申し込み</a>
             <a href="#problem" class="link-more">詳しく見る</a>
           </div>
         </div>
@@ -56,10 +58,10 @@
             <li class="tb-card tb-type"><video class="tb-video" src="assets/video/card-window.mp4" poster="assets/video/card-window.jpg" muted playsinline loop preload="metadata" disablepictureinpicture disableremoteplayback aria-hidden="true"></video><span class="tb-name">窓タイプ生成</span></li>
             <li class="tb-card tb-type"><video class="tb-video" src="assets/video/card-shutter.mp4" poster="assets/video/card-shutter.jpg" muted playsinline loop preload="metadata" disablepictureinpicture disableremoteplayback aria-hidden="true"></video><span class="tb-name">シャッタータイプ生成</span></li>
             <li class="tb-card tb-type"><video class="tb-video" src="assets/video/card-wall.mp4" poster="assets/video/card-wall.jpg" muted playsinline loop preload="metadata" disablepictureinpicture disableremoteplayback aria-hidden="true"></video><span class="tb-name">壁タイプ生成</span></li>
-            <li class="tb-card tb-tool"><img src="assets/img/tools/color-filter.svg" alt="" width="48" height="48"><span class="tb-name">色分け作成</span><span class="tb-desc">フィルタを作成し、ビューに当て込んで色を設定</span></li>
+            <li class="tb-card tb-tool"><span class="tb-pending">準備中</span><span class="tb-name">色分け作成</span><span class="tb-desc">フィルタを作成し、ビューに当て込んで色を設定</span></li>
             <li class="tb-card tb-tool"><img src="assets/img/tools/param-checker.png" alt="" width="48" height="48"><span class="tb-name">パラメーターチェッカ</span><span class="tb-desc">パラメータの有無や、寸法・面積などの数値範囲をチェック</span></li>
             <li class="tb-card tb-tool"><img src="assets/img/tools/lgs-checker.png" alt="" width="48" height="48"><span class="tb-name">LGSチェッカ</span><span class="tb-desc">「公共建築工事標準仕様書」に基づいてLGS壁をチェック</span></li>
-            <li class="tb-card tb-tool"><img src="assets/img/tools/insulation.svg" alt="" width="48" height="48"><span class="tb-name">断熱材作成</span><span class="tb-desc">構造要素のクリックした面に断熱材・フカシを追加</span></li>
+            <li class="tb-card tb-tool"><span class="tb-pending">準備中</span><span class="tb-name">断熱材作成</span><span class="tb-desc">構造要素のクリックした面に断熱材・フカシを追加</span></li>
             <li class="tb-card tb-cat"><span class="tb-cat-name">作図</span><span class="tb-icons"><img src="assets/img/tools/level-dim.png" alt="" width="32" height="32"><img src="assets/img/tools/grid-dim.png" alt="" width="32" height="32"><img src="assets/img/tools/wall-dim.png" alt="" width="32" height="32"><img src="assets/img/tools/column-dim.png" alt="" width="32" height="32"><img src="assets/img/tools/beam-dim.png" alt="" width="32" height="32"><img src="assets/img/tools/wall-tag.png" alt="" width="32" height="32"><img src="assets/img/tools/wall-center.png" alt="" width="32" height="32"><span class="tb-more" aria-hidden="true">・・・</span></span></li>
             <li class="tb-card tb-cat"><span class="tb-cat-name">モデリング</span><span class="tb-icons"><img src="assets/img/tools/inner-opening.png" alt="" width="32" height="32"><img src="assets/img/tools/furring.png" alt="" width="32" height="32"><img src="assets/img/tools/wall-detail.png" alt="" width="32" height="32"><span class="tb-more" aria-hidden="true">・・・</span></span></li>
             <li class="tb-card tb-cat"><span class="tb-cat-name">初期設定</span><span class="tb-icons"><img src="assets/img/tools/level-batch.png" alt="" width="32" height="32"><img src="assets/img/tools/grid-batch.png" alt="" width="32" height="32"><span class="tb-more" aria-hidden="true">・・・</span></span></li>
@@ -301,7 +303,7 @@
     </div>
   </section>
 
-  <section class="section snap" id="package" aria-label="Arch-LMOS のパッケージ内容">
+  <section class="section snap last-panel" id="package" aria-label="Arch-LMOS のパッケージ内容">
     <div class="container">
       <div class="package">
         <h3>タイプ生成は、Arch-LMOS の一部です</h3>
@@ -309,24 +311,19 @@
         <ul class="package-list">
           <li><b>Revitファミリ</b><span>実務ですぐ使える標準ファミリ（490点以上）</span></li>
           <li><b>Revitテンプレート</b><span>設計用テンプレート、施工用テンプレート</span></li>
-          <li><b>便利ツール（アドイン）</b><span>レベル・通芯一括作成、梁フカシ作成、色分け作成等、23種類</span></li>
+          <li><b>便利ツール（アドイン）</b><span>レベル・通芯一括作成、梁フカシ作成、色分け作成等、24種類</span></li>
           <li><b>オンデマンド動画</b><span>導入・操作・社内ルールをいつでも学べる</span></li>
           <li><b>マニュアル・導入ガイド</b><span>初期設定から運用ルールまで整理</span></li>
           <li><b>導入支援</b><span>社内テンプレート調整や命名ルール整理をサポート</span></li>
         </ul>
       </div>
+      <div class="try" id="try">
+        <p class="try-lead">Arch-LMOSを試してみてください。</p>
+        <a href="https://dev.arch-lmos.com/signup" data-signup-link class="btn btn-primary btn-lg">申し込み</a>
+      </div>
     </div>
   </section>
 
-  <!-- ============ RELEASE ============ -->
-  <section class="section snap release" id="release">
-    <div class="container narrow center">
-      <p class="release-lead">正式リリース</p>
-      <p class="release-date"><span>2027年</span>1月末<small>予定</small></p>
-      <p class="release-sub">BIMが、建築のあたりまえになる未来へ。<br>より多くの方が手軽に始めやすいプランをご用意する予定です。</p>
-      <a href="https://keen-airboat-177.notion.site/8fdcff9bd17440d4af2c0ebf24754964?pvs=105" target="_blank" rel="noopener" data-survey-link class="btn btn-primary btn-lg">アンケートに答えて今だけの特典をもらう</a>
-    </div>
-  </section>
 
 </main>
 
@@ -334,7 +331,7 @@
   <div class="container footer-inner">
     <div>
       <p class="logo-text">Arch-LMOS</p>
-      <p class="footer-note">※ 掲載内容は開発中のものです。仕様・名称・提供時期は変更になる場合があります。<br>※ Revit は Autodesk, Inc. の登録商標です。</p>
+      <p class="footer-note">※ Revit は Autodesk, Inc. の登録商標です。</p>
     </div>
     <div class="footer-links">
       <a href="mailto:support.lmos@m-arch-log.com">お問い合わせ：support.lmos@m-arch-log.com</a>

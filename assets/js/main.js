@@ -267,8 +267,11 @@
   // ユーザーが操作したら、吸い付き中の扱いを解除
   ["wheel", "touchstart", "keydown"].forEach(function (ev) { window.addEventListener(ev, function () { docking = false; }, { passive: true }); });
 
-  /* ---------------- survey link ---------------- */
-  document.querySelectorAll("[data-survey-link]").forEach(function (a) {
-    a.addEventListener("click", function () { track("survey_click", { label: a.textContent.trim() }); });
+  /* ---------------- signup / login link ---------------- */
+  document.querySelectorAll("[data-signup-link]").forEach(function (a) {
+    a.addEventListener("click", function () { track("signup_click", { label: a.textContent.trim() }); });
+  });
+  document.querySelectorAll("[data-login-link]").forEach(function (a) {
+    a.addEventListener("click", function () { track("login_click", { label: a.textContent.trim() }); });
   });
 })();
