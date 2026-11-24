@@ -1,7 +1,4 @@
-# Arch-LMOS｜タイプ生成 LP（リリース後版）
-
-> `ALBS_LP_renewal/`（リリース前版）をコピーし、申し込み導線に差し替えた版。申込ボタン「申し込み」（`data-signup-link`）→ https://dev.arch-lmos.com/signup 、ログインボタン（ヘッダーのみ、`data-login-link`）→ https://dev.arch-lmos.com/login 。下部の「正式リリース 2027年1月末予定」セクション・ファーストビューのリリース予定表記・フッターの開発中注記は削除し、パッケージ紹介の下に「Arch-LMOSを試してみてください。」と申込ボタンを配置。GA4 イベントは `signup_click` / `login_click`。
-
+# Arch-LMOS｜タイプ生成 LP（リニューアル版）
 
 > `ALBS_LP/` をコピーしてデザインのみ刷新した版。Apple 風レイアウト、FullHD（1920px）でコンテンツ幅 1680px、色は Arch-LOG パレット（メインカラー `#E60012` は CTA・強調語・寸法線のみ）。余白・文字サイズは `style.css` 先頭の `:root` で一括管理。
 > PC（幅1024px以上・高さ700px以上）では各セクションが 1 画面に収まり、パネルの頭が画面上端の近くで止まったときだけ軽く吸い付く（`main.js` の magnet）。組み立てアニメーションは Remotion で作った 3D 動画（`assets/video/`、元は `../motion/`）。
